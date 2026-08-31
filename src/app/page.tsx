@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import FloatingPokeballs from "@/components/ui/FloatingPokeballs";
 import FlameSVG from "@/components/ui/FlameSVG";
+import PackCarousel from "@/components/ui/PackCarousel";
 
 const PALETTE = [
   "#e8384f", "#f0b429", "#3aa0c9", "#7fbf6a",
@@ -109,7 +109,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Clean Sticky Navigation (Pikachu logo removed) */}
+      {/* Clean Sticky Navigation */}
       <nav>
         <div className="logo">
           <div className="dpad">
@@ -121,7 +121,7 @@ export default function Home() {
         </div>
         <div className="navlinks">
           <a href="#collection">Collection</a>
-          <a href="#mechanics">Mint</a>
+          <a href="#mechanics">Mint & Packs</a>
           <a href="#timeline">Timeline</a>
           <a href="#faq">FAQ</a>
         </div>
@@ -144,7 +144,7 @@ export default function Home() {
             ENTER MINT
           </a>
           <a href="#mechanics" className="btn btn-ghost">
-            How it works
+            View Physical Packs
           </a>
         </div>
 
@@ -204,7 +204,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MECHANICS SECTION */}
+      {/* MECHANICS & PACK CAROUSEL SECTION */}
       <section id="mechanics">
         <div className="section-head">
           <div className="eyebrow pixel">TWO WAYS TO PLAY</div>
@@ -212,6 +212,7 @@ export default function Home() {
           <p>No forced choice at mint. Decide later, decide never — the option stays open as long as you&apos;re holding.</p>
         </div>
 
+        {/* Hold vs Burn Dual Paths */}
         <div className="paths">
           {/* Path 1: HOLD */}
           <div className="path hold">
@@ -229,51 +230,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Path 2: BURN (Featuring highlighted cards for pack0.jpg and pack.jpg) */}
+          {/* Path 2: BURN */}
           <div className="path burn">
             <div>
               <span className="tag pixel">BURN</span>
               <h3>Burn 3, roll for a pack</h3>
               <p>Send three cards to the raffle and you&apos;re in the pool for one of 1,000 real 30th Anniversary packs, sourced direct from one of the first retailers in Japan to carry the drop.</p>
-
-              {/* Highlighted Pack & Box Cards */}
-              <div className="mini-pack-grid">
-                {/* Highlighted Card 1: Pack0.jpg */}
-                <div className="mini-pack-card">
-                  <div className="mini-pack-thumb">
-                    <Image
-                      src="/pack0.jpg"
-                      alt="Sealed Booster Foil Pack"
-                      fill
-                      className="object-contain p-1"
-                      sizes="(max-width: 768px) 54px, 60px"
-                    />
-                  </div>
-                  <div className="mini-pack-info">
-                    <div className="mini-pack-title">30th Booster Pack</div>
-                    <div className="mini-pack-sub">6 Holo Cards · Sealed Foil</div>
-                    <div className="mini-pack-badge">★ 1 OF 1,000 POOL</div>
-                  </div>
-                </div>
-
-                {/* Highlighted Card 2: Pack.jpg */}
-                <div className="mini-pack-card">
-                  <div className="mini-pack-thumb">
-                    <Image
-                      src="/pack.jpg"
-                      alt="Sealed Booster Display Box Case"
-                      fill
-                      className="object-contain p-1"
-                      sizes="(max-width: 768px) 54px, 60px"
-                    />
-                  </div>
-                  <div className="mini-pack-info">
-                    <div className="mini-pack-title">Booster Display Box</div>
-                    <div className="mini-pack-sub">Tokyo Retail Direct Stock</div>
-                    <div className="mini-pack-badge">★ JPN IMPORT</div>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div className="stat">
@@ -282,6 +244,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* High-Visibility Physical Pack Showcase Carousel (pack0.jpg, pack.jpg, pack1.webp, pack2.webp) */}
+        <PackCarousel />
       </section>
 
       {/* STATS STRIP */}
@@ -314,7 +279,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* TIMELINE SECTION (Stealth replaced with Public Contract / Public Mint) */}
+      {/* TIMELINE SECTION */}
       <section id="timeline">
         <div className="section-head">
           <div className="eyebrow pixel">NO ROADMAP, JUST DATES</div>
