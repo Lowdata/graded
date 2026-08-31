@@ -1,19 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `${SITE_CONFIG.title} | Fan Tribute`,
-  description: SITE_CONFIG.description,
-  keywords: ["Pokémon", "30th Anniversary", "1996", "2026", "fan tribute", "Pokémon history", "generations"],
-  openGraph: {
-    title: `${SITE_CONFIG.title} | Fan Tribute`,
-    description: SITE_CONFIG.description,
-    type: "website",
-  },
-  robots: {
-    index: true,
-    follow: true,
+  title: "GRADED — 30th Anniversary Collection",
+  description:
+    "4,444 pixel-faced PFPs pulled from 40 of the most recognizable lineups in the hobby, minted on-chain for the 30th anniversary. Hold your face forever, or burn three and chase 1 of 1,000 real anniversary packs.",
+  icons: {
+    icon: "/favicon.svg",
+    apple: "/favicon.svg",
   },
 };
 
@@ -28,16 +22,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Press+Start+2P&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Press+Start+2P&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@500;700&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body>
-        {/* CRT Effects */}
-        <div className="crt-overlay" aria-hidden="true" />
-        <div className="noise-overlay" aria-hidden="true" />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

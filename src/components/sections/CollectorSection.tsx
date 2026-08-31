@@ -1,170 +1,152 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import PixelText from "@/components/ui/PixelText";
+import { CharizardSVG } from "@/components/ui/PokemonSVGs";
 import Pokeball from "@/components/ui/Pokeball";
-
-// Collector card visual (CSS-drawn)
-function CollectorCard() {
-  return (
-    <div className="relative w-full max-w-[280px] mx-auto">
-      {/* Card border */}
-      <div className="relative border-2 border-electric-yellow/20 bg-gradient-to-b from-card to-panel overflow-hidden"
-        style={{ aspectRatio: "2.5/3.5", boxShadow: "0 30px 60px -10px rgba(246, 201, 69, 0.15)" }}
-      >
-        {/* Top bar */}
-        <div className="h-6 w-full bg-electric-yellow/10 border-b border-electric-yellow/20 flex items-center px-3 gap-2">
-          <div className="w-2 h-2 rounded-full bg-pokered/60" />
-          <PixelText size="xxs" className="text-electric-yellow/60 tracking-[0.1em]">ARCHIVE · 30TH</PixelText>
-        </div>
-
-        {/* Main area */}
-        <div className="flex-1 flex flex-col items-center justify-center p-6 gap-4">
-          {/* Big Pokéball */}
-          <div className="relative">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              <Pokeball size="lg" />
-            </motion.div>
-            {/* Glow */}
-            <div className="absolute inset-0 rounded-full bg-pokered/10 blur-xl" />
-          </div>
-
-          {/* Japanese text block */}
-          <div className="text-center">
-            <div className="font-jp text-cream/70 text-sm tracking-[0.2em]">ポケットモンスター</div>
-            <div className="font-mono text-electric-yellow text-xs tracking-[0.15em] mt-1">1996 — 2026</div>
-          </div>
-
-          {/* Horizontal separator */}
-          <div className="w-full h-px bg-electric-yellow/10" />
-
-          {/* Stats grid */}
-          <div className="grid grid-cols-2 gap-2 w-full text-center">
-            {[
-              ["30", "YEARS"],
-              ["9", "GENS"],
-              ["151+", "ORIGINAL"],
-              ["1B+", "CARDS"],
-            ].map(([v, l]) => (
-              <div key={l} className="bg-ink/50 py-2">
-                <div className="font-mono text-electric-yellow text-sm font-semibold">{v}</div>
-                <PixelText size="xxs" className="text-mist/50 tracking-[0.08em]">{l}</PixelText>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="h-8 border-t border-electric-yellow/20 bg-electric-yellow/5 flex items-center justify-between px-4">
-          <PixelText size="xxs" className="text-mist/40">PKM-2026-30TH</PixelText>
-          <div className="flex gap-1">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="w-1 h-3" style={{ background: i < 6 ? "#F6C945" : "#232329" }} />
-            ))}
-          </div>
-        </div>
-
-        {/* Corner brackets */}
-        <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-electric-yellow/60" />
-        <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-electric-yellow/60" />
-        <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-electric-yellow/60" />
-        <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-electric-yellow/60" />
-      </div>
-
-      {/* Rarity badge */}
-      <div className="absolute -top-3 -right-3 bg-pokered px-3 py-1 text-[0.5rem] font-pixel text-cream tracking-[0.1em] rotate-3">
-        LEGENDARY
-      </div>
-    </div>
-  );
-}
+import PixelText from "@/components/ui/PixelText";
+import { Sparkles, Award, Shield, Disc, Layers } from "lucide-react";
 
 export default function CollectorSection() {
-  const prefersReduced = useReducedMotion();
-
   return (
-    <section className="py-28 px-6 bg-ink relative overflow-hidden">
-      {/* Background text */}
+    <section className="py-28 px-4 sm:px-6 lg:px-10 bg-[#08090D] border-b border-[#222633] relative overflow-hidden" id="collector">
+      {/* Background Watermark strictly contained with very low opacity */}
       <div
-        className="absolute right-0 top-1/2 -translate-y-1/2 font-jp text-cream/[0.02] pointer-events-none select-none"
-        style={{ fontSize: "clamp(4rem, 12vw, 10rem)", writingMode: "vertical-rl", lineHeight: 1 }}
+        className="absolute right-0 top-1/2 -translate-y-1/2 font-jp text-white/[0.015] pointer-events-none select-none text-[14vw] font-black leading-none"
+        style={{ writingMode: "vertical-rl" }}
       >
-        コレクター
+        永久保存
       </div>
 
-      <div className="max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          {/* Left: Collector card */}
-          <motion.div
-            initial={prefersReduced ? { opacity: 1 } : { opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="flex justify-center"
-          >
-            <CollectorCard />
-          </motion.div>
+      <div className="max-w-[1200px] mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Left Column: Holographic Graded Slab Card */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="w-full max-w-[340px] bg-[#101217] border-2 border-[#F0B429] p-4 rounded-sm relative shadow-[0_0_35px_rgba(240,180,41,0.15)] group">
+              {/* Graded Slab Label (Top PSA/BGS Style Header) */}
+              <div className="bg-[#060709] border border-[#F0B429]/40 p-3 mb-4 rounded-sm">
+                <div className="flex items-center justify-between border-b border-[#222633] pb-2 mb-2">
+                  <div className="flex items-center gap-1.5">
+                    <Pokeball size="xs" color="#F0B429" />
+                    <span className="font-pixel text-[0.6rem] text-[#F0B429] tracking-wider">
+                      GRADED // 30TH
+                    </span>
+                  </div>
+                  <span className="font-mono text-[0.65rem] text-[#8C9098]">#0001 / 4444</span>
+                </div>
 
-          {/* Right: Copy */}
-          <motion.div
-            initial={prefersReduced ? { opacity: 1 } : { opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-          >
-            {/* Rarity label */}
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-px w-8 bg-pokered/40" />
-              <PixelText size="xxs" className="text-pokered tracking-[0.2em]">FOR THE COLLECTORS</PixelText>
+                <div className="flex items-baseline justify-between">
+                  <div>
+                    <div className="font-bold text-sm text-[#F5F1E8]">CHARIZARD · 1ST ED</div>
+                    <div className="font-jp text-[0.65rem] text-[#F0B429] golden-aura">リザードン 初版</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="font-pixel text-base text-[#F0B429] leading-none">10</div>
+                    <div className="font-mono text-[0.55rem] text-[#8C9098] tracking-widest">GEM-MINT</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card Window with SVG Character & Holographic Sheen */}
+              <div className="aspect-[3/4] bg-gradient-to-b from-[#1C1113] via-[#090A0D] to-[#0D1117] border border-[#353B4F] relative rounded-sm flex flex-col items-center justify-center p-6 overflow-hidden">
+                {/* Diagonal Holographic Sheen overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-[#F0B429]/5 to-transparent pointer-events-none" />
+
+                {/* SVG Character */}
+                <div className="relative z-10 my-auto">
+                  <CharizardSVG size={160} glow glowColor="#E53935" />
+                </div>
+
+                {/* Card Sub-stats */}
+                <div className="w-full relative z-10 pt-3 border-t border-[#222633] flex justify-between items-center text-[0.65rem] font-mono text-[#8C9098]">
+                  <span>HP 120 · FIRE</span>
+                  <span className="text-[#F0B429] font-bold">1996 BASE LINEAGE</span>
+                </div>
+              </div>
+
+              {/* Bottom Security Hologram */}
+              <div className="mt-3 flex items-center justify-between text-[0.6rem] font-mono text-[#8C9098]">
+                <span className="flex items-center gap-1">
+                  <Shield size={12} className="text-[#F0B429]" />
+                  AUTHENTICATED ON-CHAIN
+                </span>
+                <span className="font-pixel text-[0.5rem] text-[#F0B429]">★ 30TH</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Collector Story & Media Types */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="flex items-center gap-3">
+              <Pokeball size="xs" color="#F0B429" />
+              <PixelText size="xs" className="text-gold tracking-[0.25em]">
+                COLLECTOR ARCHIVE // 30年の歴史
+              </PixelText>
             </div>
 
-            <h2 className="font-bold text-cream mb-6 leading-tight" style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)" }}>
-              For the ones who never stopped collecting.
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F5F1E8] leading-tight">
+              For the ones who{" "}
+              <span className="golden-aura">never stopped collecting.</span>
             </h2>
 
-            <p className="text-mist leading-relaxed mb-6 text-sm md:text-base">
-              What started with a Game Boy cartridge became a universe. Pokémon collecting has never
-              been just about the game — it was about the ritual. Cracking a new booster pack,
-              the feel of holographic card stock, organizing binders by generation.
+            <p className="text-[#8C9098] text-sm md:text-base leading-relaxed">
+              What began with two Game Boy cartridges in 1996 grew into the highest-grossing media franchise in human history. 
+              The GRADED 30th Anniversary project immortalizes the core pillars of the hobby:
             </p>
 
-            <div className="space-y-4 mb-8">
+            {/* Collecting Pillars */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               {[
-                ["VIDEO GAMES", "From Red & Green to Scarlet & Violet — nine mainline generations."],
-                ["TRADING CARDS", "Over a billion cards sold worldwide since 1996."],
-                ["MERCHANDISE", "Figures, plush, clothing, special editions — a complete universe."],
-                ["ANIMATION", "Over 1,000 episodes of the Pokémon anime spanning three decades."],
-              ].map(([title, desc]) => (
-                <div key={title} className="flex gap-4 items-start py-3 border-b border-card-line">
-                  <Pokeball size="xs" className="mt-0.5 flex-shrink-0" />
-                  <div>
-                    <PixelText size="xxs" className="text-electric-yellow/80 tracking-[0.1em] block mb-1">{title}</PixelText>
-                    <p className="text-mist/70 text-xs">{desc}</p>
+                {
+                  icon: Disc,
+                  title: "VIDEO GAMES",
+                  jp: "ゲーム",
+                  desc: "From Red & Green on Game Boy to Scarlet & Violet on Switch across 9 regions.",
+                },
+                {
+                  icon: Layers,
+                  title: "TRADING CARDS",
+                  jp: "カードゲーム",
+                  desc: "Over 52 billion cards printed worldwide since the 1996 Base Set expansion.",
+                },
+                {
+                  icon: Award,
+                  title: "FIGURES & SLABS",
+                  jp: "フィギュア",
+                  desc: "High-grade PSA/BGS slabs, vintage Japanese vending sheets, and scaled statues.",
+                },
+                {
+                  icon: Sparkles,
+                  title: "ANIMATION",
+                  jp: "アニメ",
+                  desc: "1,200+ anime episodes, 23 movies, and 25 years of Ash & Pikachu's championship.",
+                },
+              ].map((pillar) => (
+                <div
+                  key={pillar.title}
+                  className="bg-[#101217] border border-[#222633] p-4 rounded-sm hover:border-[#353B4F] transition-colors"
+                >
+                  <div className="flex items-center gap-2 mb-2 text-[#F0B429]">
+                    <pillar.icon size={16} />
+                    <span className="font-bold text-xs tracking-wider font-mono">{pillar.title}</span>
+                    <span className="font-jp text-[0.65rem] opacity-60 ml-auto">{pillar.jp}</span>
                   </div>
+                  <p className="text-xs text-[#8C9098] leading-relaxed">{pillar.desc}</p>
                 </div>
               ))}
             </div>
 
-            {/* Archive status badge */}
-            <div className="inline-flex items-center gap-3 border border-electric-yellow/20 bg-electric-yellow/5 px-4 py-2 mb-6">
-              <div className="w-2 h-2 bg-electric-yellow rounded-full animate-pulse" />
-              <div>
-                <PixelText size="xxs" className="text-mist/40 tracking-[0.08em]">ARCHIVE STATUS</PixelText>
-                <div className="font-mono text-electric-yellow text-xs tracking-[0.1em] mt-0.5">LEGENDARY</div>
-              </div>
-            </div>
+            {/* Action Row */}
+            <div className="pt-4 flex flex-wrap items-center gap-4">
+              <a
+                href="#collection"
+                className="px-6 py-3 bg-[#F0B429] hover:bg-[#FFD54F] text-[#060709] font-pixel text-xs tracking-widest rounded-sm transition-all shadow-[0_0_20px_rgba(240,180,41,0.25)] flex items-center gap-2"
+              >
+                <Pokeball size="xs" color="#060709" />
+                EXPLORE 4,444 COLLECTION
+              </a>
 
-            <a
-              href="#collection"
-              className="flex items-center gap-3 text-sm font-bold text-cream border border-card-line px-6 py-3 w-fit hover:border-electric-yellow/50 transition-all duration-200 hover:-translate-y-0.5 rounded-sm"
-            >
-              <Pokeball size="xs" />
-              EXPLORE THE COLLECTION
-            </a>
-          </motion.div>
+              <div className="stamp">ARCHIVE STATUS: LEGENDARY</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

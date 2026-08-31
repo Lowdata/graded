@@ -1,117 +1,99 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { GENERATIONS } from "@/lib/constants";
 import PixelText from "@/components/ui/PixelText";
 import Pokeball from "@/components/ui/Pokeball";
-
-function TimelineItem({ gen, index, active }: {
-  gen: typeof GENERATIONS[0]; index: number; active: boolean;
-}) {
-  const prefersReduced = useReducedMotion();
-  const isEven = index % 2 === 0;
-
-  return (
-    <motion.div
-      className="relative flex items-start gap-6 py-8"
-      initial={prefersReduced ? { opacity: 1 } : { opacity: 0, x: isEven ? -30 : 30 }}
-      animate={active ? { opacity: 1, x: 0 } : {}}
-      transition={{ delay: index * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {/* Connector line */}
-      <div
-        className="absolute left-[22px] top-0 bottom-0 w-px"
-        style={{ background: `linear-gradient(to bottom, transparent, ${gen.color}40, transparent)` }}
-      />
-
-      {/* Pokéball marker */}
-      <div className="relative z-10 flex-shrink-0 mt-1">
-        <div
-          className="w-11 h-11 rounded-full flex items-center justify-center border-2"
-          style={{ borderColor: gen.color, background: "var(--ink)" }}
-        >
-          <Pokeball size="xs" color={gen.color} />
-        </div>
-        {/* Pulse ring on active */}
-        <motion.div
-          className="absolute inset-0 rounded-full"
-          style={{ borderColor: gen.color, borderWidth: 2 }}
-          animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0, 0.6] }}
-          transition={{ duration: 2.5, repeat: Infinity, delay: index * 0.3 }}
-        />
-      </div>
-
-      {/* Content */}
-      <div className="flex-1 pb-4 border-b border-card-line">
-        <div className="flex flex-wrap items-center gap-3 mb-2">
-          <PixelText size="xxs" className="text-mist/50 tracking-[0.12em] font-mono">
-            {gen.year}
-          </PixelText>
-          <div
-            className="px-2 py-0.5 text-[0.55rem] font-pixel tracking-[0.08em]"
-            style={{ color: gen.color, border: `1px solid ${gen.color}30` }}
-          >
-            GEN {gen.roman}
-          </div>
-          <div className="font-mono text-[0.6rem] text-mist/40 tracking-[0.1em]">
-            {gen.region}
-          </div>
-        </div>
-        <h3 className="font-bold text-cream text-lg mb-2">{gen.title}</h3>
-        <p className="text-mist text-sm leading-relaxed">{gen.description}</p>
-        <div className="mt-3 flex items-center gap-2">
-          <div className="w-2 h-2 rounded-sm" style={{ background: gen.color }} />
-          <PixelText size="xxs" className="text-mist/40 tracking-[0.1em]">
-            +{gen.pokemonCount} POKÉMON
-          </PixelText>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
+import { CheckCircle2, Clock, Flame, Package } from "lucide-react";
 
 export default function GenerationTimeline() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(false);
-  const prefersReduced = useReducedMotion();
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setActive(true); },
-      { threshold: 0.1 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const roadmapItems = [
+    {
+      when: "NOW",
+      title: "Stealth Contract Deployment",
+      desc: "No allowlist, no whitelist grind, no gatekeeping. Smart contract deploys directly on-chain.",
+      active: false,
+      icon: CheckCircle2,
+      jp: "ステルス公開",
+    },
+    {
+      when: "SEPT 16",
+      title: "Public Mint Opens",
+      desc: "4,444 faces available. Public mint, first come, first served. Instant on-chain lineage reveal.",
+      active: true,
+      icon: Clock,
+      jp: "ミント開始",
+    },
+    {
+      when: "POST-MINT",
+      title: "Burn Window Opens",
+      desc: "Burn 3 faces to enter the physical booster pack raffle pool whenever ready — zero countdown pressure.",
+      active: false,
+      icon: Flame,
+      jp: "燃焼期間開始",
+    },
+    {
+      when: "TBD",
+      title: "Raffle Draw + Tokyo Fulfillment",
+      desc: "1,000 winners drawn via Chainlink VRF on-chain. Sealed packs ship direct from authorized retailer stock in Tokyo.",
+      active: false,
+      icon: Package,
+      jp: "抽選と発送",
+    },
+  ];
 
   return (
-    <section className="py-24 px-6 bg-ink" id="timeline">
-      <div className="max-w-[900px] mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
+    <section className="py-28 px-4 sm:px-6 lg:px-10 bg-[#060709] border-b border-[#222633]" id="timeline">
+      <div className="max-w-[800px] mx-auto">
+        {/* Section Header from HTML */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="h-px w-8 bg-pokered/40" />
-            <PixelText size="xxs" className="text-pokered tracking-[0.2em]">NO ROADMAP, JUST HISTORY</PixelText>
-            <div className="h-px w-8 bg-pokered/40" />
+            <Pokeball size="xs" color="#F0B429" />
+            <PixelText size="xs" className="text-gold tracking-[0.25em]">
+              NO ROADMAP, JUST DATES // スケジュール
+            </PixelText>
+            <Pokeball size="xs" color="#F0B429" />
           </div>
-          <h2 className="font-bold text-cream" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>
-            Every generation left a mark.
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F5F1E8] mb-3">
+            The only timeline that matters.
           </h2>
-          <p className="text-mist mt-3 text-sm md:text-base max-w-lg mx-auto">
-            Nine generations. Nine regions. One unbroken thread of adventure.
+          <p className="text-[#8C9098] text-sm leading-relaxed">
+            Direct, transparent milestone dates for the 30th anniversary release.
           </p>
         </div>
 
-        {/* Timeline */}
-        <div ref={ref} className="relative">
-          {/* Main vertical line */}
-          <div className="absolute left-[22px] top-0 bottom-0 w-px bg-card-line" />
+        {/* Timeline Stack */}
+        <div className="space-y-6">
+          {roadmapItems.map((item, i) => (
+            <div
+              key={item.when}
+              className={`p-6 sm:p-8 rounded-sm border-2 transition-all duration-300 relative ${
+                item.active
+                  ? "bg-[#141720] border-[#E53935] shadow-[0_0_30px_rgba(229,57,53,0.2)]"
+                  : "bg-[#101217] border-[#222633] hover:border-[#353B4F]"
+              }`}
+            >
+              {item.active && (
+                <div className="absolute -top-3 right-6 bg-[#E53935] px-3 py-0.5 font-pixel text-[0.55rem] text-[#F5F1E8] tracking-widest rounded-[1px]">
+                  CURRENT STAGE
+                </div>
+              )}
 
-          {GENERATIONS.map((gen, i) => (
-            <TimelineItem key={gen.id} gen={gen} index={i} active={prefersReduced ? true : active} />
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-3">
+                <div className="flex items-center gap-2">
+                  <span className={`font-mono text-sm font-bold ${item.active ? "text-[#E53935]" : "text-[#F0B429]"}`}>
+                    {item.when}
+                  </span>
+                  <span className="font-jp text-xs opacity-60 text-[#8C9098]">{item.jp}</span>
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-[#F5F1E8]">
+                  {item.title}
+                </h3>
+              </div>
+
+              <p className="text-sm text-[#8C9098] leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
           ))}
         </div>
       </div>

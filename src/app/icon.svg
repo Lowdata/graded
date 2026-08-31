@@ -1,0 +1,44 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD54F" stop-opacity="0.8"/>
+      <stop offset="60%" stop-color="#E53935" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#E53935" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="redHalf" x1="0" y1="0" x2="0" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF4D4D"/>
+      <stop offset="100%" stop-color="#C62828"/>
+    </linearGradient>
+    <linearGradient id="whiteHalf" x1="0" y1="32" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#DCD7CE"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Aura Glow -->
+  <circle cx="32" cy="32" r="30" fill="url(#glow)"/>
+
+  <!-- Outer Black Bezel -->
+  <circle cx="32" cy="32" r="26" fill="#090A0D" stroke="#F0B429" stroke-width="1.5"/>
+
+  <!-- Top Red Dome -->
+  <path d="M8 32 A 24 24 0 0 1 56 32 Z" fill="url(#redHalf)"/>
+  
+  <!-- Highlight on Red Dome -->
+  <path d="M16 18 A 20 20 0 0 1 48 18" stroke="#FFA4A4" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Bottom White Dome -->
+  <path d="M8 32 A 24 24 0 0 0 56 32 Z" fill="url(#whiteHalf)"/>
+
+  <!-- Center Black Divider Belt -->
+  <rect x="8" y="29.5" width="48" height="5" fill="#090A0D"/>
+
+  <!-- Center Button Outer Ring -->
+  <circle cx="32" cy="32" r="9" fill="#090A0D" stroke="#F0B429" stroke-width="1"/>
+
+  <!-- Center Button Inner White Disc -->
+  <circle cx="32" cy="32" r="6" fill="#FFFFFF"/>
+
+  <!-- Center Button Core -->
+  <circle cx="32" cy="32" r="3" fill="#E53935"/>
+</svg>

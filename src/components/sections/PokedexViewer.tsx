@@ -1,225 +1,202 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { POKEDEX_ENTRIES, TYPE_COLORS } from "@/lib/constants";
+import {
+  PikachuSVG,
+  CharizardSVG,
+  BlastoiseSVG,
+  VenusaurSVG,
+  GengarSVG,
+  MewtwoSVG,
+  EeveeSVG,
+  LucarioSVG
+} from "@/components/ui/PokemonSVGs";
 import PixelText from "@/components/ui/PixelText";
 import Pokeball from "@/components/ui/Pokeball";
-
-function TypeBadge({ type }: { type: string }) {
-  const color = TYPE_COLORS[type] ?? "#8C9098";
-  return (
-    <span
-      className="type-badge"
-      style={{ background: color + "25", color, border: `1px solid ${color}50` }}
-    >
-      {type}
-    </span>
-  );
-}
-
-// Simple pixel silhouette for Pokédex (colored block art)
-function PokedexSilhouette({ color }: { color: string }) {
-  return (
-    <div className="flex items-center justify-center w-full h-48 relative">
-      {/* Scan line animation */}
-      <motion.div
-        className="absolute inset-x-0 h-0.5 pointer-events-none"
-        style={{ background: `${color}40` }}
-        animate={{ top: ["0%", "100%"] }}
-        transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-      />
-      {/* Abstract Pokéball as silhouette placeholder */}
-      <div className="relative">
-        <motion.div
-          animate={{ scale: [1, 1.04, 1] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Pokeball size="lg" color={color} opacity={0.7} />
-        </motion.div>
-        {/* Glow */}
-        <div
-          className="absolute inset-0 blur-2xl rounded-full"
-          style={{ background: color + "20" }}
-        />
-      </div>
-    </div>
-  );
-}
+import { ChevronLeft, ChevronRight, Activity, Radio } from "lucide-react";
 
 export default function PokedexViewer() {
-  const prefersReduced = useReducedMotion();
-  const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState(1);
+  const [currentIndex, setCurrentIndex] = useState(3); // Start with Pikachu (#025)
 
-  const entry = POKEDEX_ENTRIES[current];
+  const currentPokemon = POKEDEX_ENTRIES[currentIndex];
 
-  const go = (dir: 1 | -1) => {
-    setDirection(dir);
-    setCurrent((c) => (c + dir + POKEDEX_ENTRIES.length) % POKEDEX_ENTRIES.length);
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? POKEDEX_ENTRIES.length - 1 : prev - 1));
   };
 
-  const slideVariants = {
-    enter: (d: number) => ({
-      x: d > 0 ? 40 : -40,
-      opacity: 0,
-    }),
-    center: { x: 0, opacity: 1 },
-    exit: (d: number) => ({
-      x: d > 0 ? -40 : 40,
-      opacity: 0,
-    }),
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev === POKEDEX_ENTRIES.length - 1 ? 0 : prev + 1));
+  };
+
+  const renderPokemonSVG = (id: string) => {
+    switch (id) {
+      case "bulbasaur":
+        return <VenusaurSVG size={180} glow color="#5DBE62" glowColor="#5DBE62" />;
+      case "charmander":
+        return <CharizardSVG size={180} glow color="#FF6B35" glowColor="#FF6B35" />;
+      case "squirtle":
+        return <BlastoiseSVG size={180} glow color="#4A90D9" glowColor="#4A90D9" />;
+      case "pikachu":
+        return <PikachuSVG size={180} glow color="#F0B429" glowColor="#F0B429" />;
+      case "gengar":
+        return <GengarSVG size={180} glow color="#7B68EE" glowColor="#7B68EE" />;
+      case "mewtwo":
+        return <MewtwoSVG size={180} glow color="#E040FB" glowColor="#E040FB" />;
+      case "eevee":
+        return <EeveeSVG size={180} glow color="#C19A6B" glowColor="#C19A6B" />;
+      case "lucario":
+        return <LucarioSVG size={180} glow color="#3B82C4" glowColor="#3B82C4" />;
+      default:
+        return <PikachuSVG size={180} glow />;
+    }
   };
 
   return (
-    <section className="py-24 px-6 bg-panel/60">
-      <div className="max-w-[900px] mx-auto">
+    <section className="py-28 px-4 sm:px-6 lg:px-10 bg-[#080A0E] border-b border-[#222633] overflow-hidden" id="pokedex">
+      <div className="max-w-[1100px] mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="h-px w-8 bg-pokered/40" />
-            <PixelText size="xxs" className="text-pokered tracking-[0.2em]">INTERACTIVE POKÉDEX</PixelText>
-            <div className="h-px w-8 bg-pokered/40" />
+            <Pokeball size="xs" color="#E53935" />
+            <PixelText size="xs" className="text-pokered tracking-[0.25em]">
+              KANTO DECODEX // 図鑑端末
+            </PixelText>
+            <Pokeball size="xs" color="#E53935" />
           </div>
-          <h2 className="font-bold text-cream" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>
-            Pocket reference.
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#F5F1E8] mb-3">
+            Pocket Reference.{" "}
+            <span className="golden-aura">全国図鑑</span>
           </h2>
+          <p className="text-[#8C9098] text-sm leading-relaxed">
+            Direct telemetry from the original 1996 Pokédex archive with elemental resonance data.
+          </p>
         </div>
 
-        {/* Pokédex device */}
-        <div className="border border-card-line bg-card relative overflow-hidden">
-          {/* Corner brackets */}
-          <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-pokered" />
-          <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-pokered" />
-          <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2 border-pokered" />
-          <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-pokered" />
-
-          {/* Device header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-card-line">
+        {/* Pokédex Hardware Terminal Frame */}
+        <div className="bg-[#101217] border-2 border-[#E53935] rounded-sm p-4 sm:p-8 shadow-[0_0_40px_rgba(229,57,53,0.15)] relative">
+          {/* Top Status Lights (Game Boy / Pokedex Style) */}
+          <div className="flex items-center justify-between border-b border-[#222633] pb-4 mb-6">
             <div className="flex items-center gap-3">
-              <Pokeball size="xs" color="#E53935" />
-              <div>
-                <PixelText size="xxs" className="text-pokered tracking-[0.15em]">POKÉDEX</PixelText>
-                <div className="font-mono text-mist/40 text-[0.55rem] tracking-[0.1em] mt-0.5">
-                  // {entry.number}
-                </div>
+              <div className="w-6 h-6 rounded-full bg-[#00E5FF] border-2 border-white animate-pulse shadow-[0_0_12px_#00E5FF]" />
+              <div className="flex gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#E53935]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#F0B429]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#4CAF50]" />
               </div>
             </div>
-            {/* Navigation dots */}
-            <div className="flex gap-1.5">
-              {POKEDEX_ENTRIES.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
-                  className="w-2 h-2 rounded-full transition-all duration-200"
-                  style={{
-                    background: i === current ? "#E53935" : "var(--card-line)",
-                    transform: i === current ? "scale(1.3)" : "scale(1)",
-                  }}
-                  aria-label={`View ${POKEDEX_ENTRIES[i].name}`}
-                />
-              ))}
+
+            <div className="font-mono text-xs text-[#8C9098] flex items-center gap-2">
+              <Radio size={14} className="text-[#E53935] animate-pulse" />
+              <span>DECODEX v3.0 · ENCRYPTED</span>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2">
-            {/* Left: Visual */}
-            <div className="border-r border-card-line p-6 relative overflow-hidden">
-              <AnimatePresence mode="wait" custom={direction}>
+          {/* Main Grid: Screen on Left, Data on Right */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            {/* Screen Window */}
+            <div className="md:col-span-6 bg-[#040507] border-2 border-[#222633] rounded-sm p-6 relative flex flex-col items-center justify-center min-h-[300px] overflow-hidden group">
+              {/* Scanlines inside screen */}
+              <div className="absolute inset-0 bg-scanlines opacity-40 pointer-events-none" />
+
+              {/* SVG Display */}
+              <AnimatePresence mode="wait">
                 <motion.div
-                  key={entry.id}
-                  custom={direction}
-                  variants={prefersReduced ? {} : slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
+                  key={currentPokemon.id}
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 1.1, opacity: 0 }}
                   transition={{ duration: 0.3 }}
+                  className="relative z-10 my-4"
                 >
-                  <PokedexSilhouette color={entry.color} />
-                  {/* Name */}
-                  <div className="text-center mt-4">
-                    <h3 className="font-bold text-cream text-xl tracking-[0.08em]">{entry.name}</h3>
-                    <div className="flex justify-center gap-2 mt-2">
-                      {entry.types.map((t) => <TypeBadge key={t} type={t} />)}
-                    </div>
-                  </div>
+                  {renderPokemonSVG(currentPokemon.id)}
                 </motion.div>
               </AnimatePresence>
+
+              {/* Bottom Display Bar */}
+              <div className="w-full relative z-10 flex justify-between items-center pt-4 border-t border-[#222633] font-mono text-xs text-[#8C9098]">
+                <span className="text-[#F0B429] font-bold">NO. {currentPokemon.number}</span>
+                <span className="font-jp golden-aura text-xs">{currentPokemon.category}</span>
+              </div>
             </div>
 
-            {/* Right: Data */}
-            <div className="p-6 flex flex-col justify-between">
-              <AnimatePresence mode="wait" custom={direction}>
-                <motion.div
-                  key={entry.id + "-data"}
-                  custom={direction}
-                  variants={prefersReduced ? {} : slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.3, delay: 0.05 }}
-                  className="flex flex-col gap-4 h-full"
+            {/* Data Console */}
+            <div className="md:col-span-6 space-y-6">
+              {/* Name & Type Badges */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-[#F5F1E8] tracking-wider">
+                    {currentPokemon.name}
+                  </h3>
+                  <span className="font-pixel text-xs text-[#F0B429]">
+                    #{currentPokemon.number}
+                  </span>
+                </div>
+
+                <div className="flex gap-2">
+                  {currentPokemon.types.map((type) => (
+                    <span
+                      key={type}
+                      className="type-badge"
+                      style={{
+                        backgroundColor: `${TYPE_COLORS[type] || "#8C9098"}20`,
+                        color: TYPE_COLORS[type] || "#8C9098",
+                        border: `1px solid ${TYPE_COLORS[type] || "#8C9098"}50`,
+                      }}
+                    >
+                      {type}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Description */}
+              <div className="bg-[#090A0D] border border-[#222633] p-4 rounded-sm">
+                <PixelText size="xxs" className="text-[#8C9098] tracking-widest block mb-2">
+                  DATABASE ENTRY // 図鑑解説
+                </PixelText>
+                <p className="text-sm text-[#B4B7C0] leading-relaxed">
+                  {currentPokemon.description}
+                </p>
+              </div>
+
+              {/* Vital Metrics Grid */}
+              <div className="grid grid-cols-2 gap-3 font-mono text-xs">
+                <div className="bg-[#090A0D] border border-[#222633] p-3">
+                  <div className="text-[#8C9098] text-[0.65rem] mb-1">HEIGHT</div>
+                  <div className="text-[#F5F1E8] font-bold">{currentPokemon.height}</div>
+                </div>
+                <div className="bg-[#090A0D] border border-[#222633] p-3">
+                  <div className="text-[#8C9098] text-[0.65rem] mb-1">WEIGHT</div>
+                  <div className="text-[#F5F1E8] font-bold">{currentPokemon.weight}</div>
+                </div>
+              </div>
+
+              {/* Selector Controls */}
+              <div className="flex items-center justify-between pt-2">
+                <button
+                  onClick={handlePrev}
+                  className="px-4 py-2.5 bg-[#141720] hover:bg-[#1A1D27] border border-[#353B4F] text-[#F5F1E8] text-xs font-mono flex items-center gap-2 transition-colors cursor-pointer"
                 >
-                  {/* Entry number */}
-                  <div>
-                    <PixelText size="xxs" className="text-mist/40 tracking-[0.1em]">POKÉDEX ENTRY</PixelText>
-                    <p className="text-mist text-xs leading-relaxed mt-2">{entry.description}</p>
-                  </div>
+                  <ChevronLeft size={16} />
+                  PREV ENTRY
+                </button>
 
-                  {/* Stats grid */}
-                  <div className="grid grid-cols-2 gap-3">
-                    {[
-                      ["NUMBER", `#${entry.number}`],
-                      ["CATEGORY", entry.category],
-                      ["HEIGHT", entry.height],
-                      ["WEIGHT", entry.weight],
-                    ].map(([label, val]) => (
-                      <div key={label} className="bg-panel px-3 py-2 border border-card-line">
-                        <PixelText size="xxs" className="text-mist/40 tracking-[0.08em] block mb-1">{label}</PixelText>
-                        <span className="font-mono text-cream text-xs">{val}</span>
-                      </div>
-                    ))}
-                  </div>
+                <div className="font-mono text-xs text-[#8C9098]">
+                  {currentIndex + 1} / {POKEDEX_ENTRIES.length}
+                </div>
 
-                  {/* Load indicator */}
-                  <div className="space-y-1">
-                    <div className="flex justify-between items-center">
-                      <PixelText size="xxs" className="text-mist/30 tracking-[0.08em]">DATA LOADED</PixelText>
-                      <PixelText size="xxs" className="text-electric-yellow/60 tracking-[0.08em]">100%</PixelText>
-                    </div>
-                    <div className="h-1 bg-card-line overflow-hidden">
-                      <div className="h-full bg-electric-yellow w-full" />
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+                <button
+                  onClick={handleNext}
+                  className="px-4 py-2.5 bg-[#141720] hover:bg-[#1A1D27] border border-[#353B4F] text-[#F5F1E8] text-xs font-mono flex items-center gap-2 transition-colors cursor-pointer"
+                >
+                  NEXT ENTRY
+                  <ChevronRight size={16} />
+                </button>
+              </div>
             </div>
-          </div>
-
-          {/* Navigation footer */}
-          <div className="flex items-center justify-between px-6 py-4 border-t border-card-line">
-            <button
-              onClick={() => go(-1)}
-              className="flex items-center gap-2 text-mist hover:text-cream transition-colors text-xs font-mono tracking-[0.08em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pokered"
-              aria-label="Previous Pokémon"
-            >
-              <ChevronLeft size={14} />
-              PREV
-            </button>
-
-            <PixelText size="xxs" className="text-mist/30 tracking-[0.1em]">
-              {current + 1} / {POKEDEX_ENTRIES.length}
-            </PixelText>
-
-            <button
-              onClick={() => go(1)}
-              className="flex items-center gap-2 text-mist hover:text-cream transition-colors text-xs font-mono tracking-[0.08em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pokered"
-              aria-label="Next Pokémon"
-            >
-              NEXT
-              <ChevronRight size={14} />
-            </button>
           </div>
         </div>
       </div>

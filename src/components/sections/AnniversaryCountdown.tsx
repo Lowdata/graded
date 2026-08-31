@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, useReducedMotion } from "framer-motion";
 import PixelText from "@/components/ui/PixelText";
 import Pokeball from "@/components/ui/Pokeball";
 import { ANNIVERSARY_DATE } from "@/lib/constants";
@@ -27,35 +26,7 @@ function getTimeLeft(): TimeLeft {
   return { days, hours, minutes, seconds };
 }
 
-function TimeUnit({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="flex flex-col items-center gap-2">
-      <div className="relative">
-        {/* Card */}
-        <div className="bg-panel border border-card-line px-4 py-3 md:px-6 md:py-4 min-w-[72px] md:min-w-[90px] text-center relative overflow-hidden">
-          {/* Scan line */}
-          <motion.div
-            className="absolute inset-x-0 h-px bg-electric-yellow/20 pointer-events-none"
-            animate={{ top: ["0%", "100%"] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          />
-          <span className="font-mono text-3xl md:text-5xl font-semibold text-cream tracking-tight tabular-nums">
-            {value}
-          </span>
-        </div>
-        {/* Corner accents */}
-        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-pokered" />
-        <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-pokered" />
-        <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-pokered" />
-        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-pokered" />
-      </div>
-      <PixelText size="xxs" className="text-mist/70 tracking-[0.18em]">{label}</PixelText>
-    </div>
-  );
-}
-
 export default function AnniversaryCountdown() {
-  const prefersReduced = useReducedMotion();
   const [time, setTime] = useState<TimeLeft>(getTimeLeft());
   const [mounted, setMounted] = useState(false);
 
@@ -65,50 +36,67 @@ export default function AnniversaryCountdown() {
     return () => clearInterval(id);
   }, []);
 
-  if (!mounted) return null;
-
-  const isOver = Object.values(time).every((v) => v === 0);
+  if (!mounted) {
+    return (
+      <div className="h-32 flex items-center justify-center">
+        <PixelText size="xxs" className="text-[#8C9098]">INITIALIZING CHRONOMETER...</PixelText>
+      </div>
+    );
+  }
 
   return (
-    <div className="flex flex-col items-center gap-6">
-      {/* Status header */}
-      <div className="flex items-center gap-3">
-        <Pokeball size="xs" />
+    <div className="bg-[#101217] border-2 border-[#222633] p-6 sm:p-8 rounded-sm relative shadow-2xl">
+      {/* Corner Brackets */}
+      <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#F0B429]" />
+      <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#F0B429]" />
+      <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-[#F0B429]" />
+      <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#F0B429]" />
+
+      {/* Header Status */}
+      <div className="flex items-center justify-between border-b border-[#222633] pb-4 mb-6">
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-pokered animate-pulse" />
+          <Pokeball size="xs" color="#E53935" />
           <PixelText size="xxs" className="text-pokered tracking-[0.2em]">
-            {isOver ? "ANNIVERSARY ACTIVE" : "ANNIVERSARY EVENT"}
+            PUBLIC MINT LAUNCH
           </PixelText>
         </div>
-        <Pokeball size="xs" />
+        <div className="font-jp text-[0.65rem] golden-aura">
+          カウントダウン
+        </div>
       </div>
 
-      {/* Timer units */}
-      <div className="flex items-center gap-3 md:gap-5">
-        <TimeUnit value={pad(time.days)} label="DAYS" />
-        <span className="font-mono text-2xl md:text-4xl text-pokered/60 font-bold -mt-6">:</span>
-        <TimeUnit value={pad(time.hours)} label="HOURS" />
-        <span className="font-mono text-2xl md:text-4xl text-pokered/60 font-bold -mt-6">:</span>
-        <TimeUnit value={pad(time.minutes)} label="MINUTES" />
-        <span className="font-mono text-2xl md:text-4xl text-pokered/60 font-bold -mt-6">:</span>
-        <TimeUnit value={pad(time.seconds)} label="SECONDS" />
+      {/* Digits Grid */}
+      <div className="grid grid-cols-4 gap-2 sm:gap-4 mb-6">
+        {[
+          { label: "DAYS", val: pad(time.days) },
+          { label: "HRS", val: pad(time.hours) },
+          { label: "MIN", val: pad(time.minutes) },
+          { label: "SEC", val: pad(time.seconds) },
+        ].map((unit, i) => (
+          <div key={unit.label} className="flex flex-col items-center">
+            <div className="w-full bg-[#060709] border border-[#222633] py-3 sm:py-4 px-2 text-center rounded-sm relative overflow-hidden">
+              <span className="font-mono text-2xl sm:text-4xl md:text-5xl font-bold text-[#F5F1E8] tracking-tight tabular-nums">
+                {unit.val}
+              </span>
+              {/* Scanline line */}
+              <div className="absolute inset-x-0 top-1/2 h-px bg-[#222633]" />
+            </div>
+            <PixelText size="xxs" className="text-[#8C9098] mt-2 tracking-widest text-[0.55rem]">
+              {unit.label}
+            </PixelText>
+          </div>
+        ))}
       </div>
 
-      {/* Target date */}
-      <div className="font-mono text-[0.6rem] text-mist/40 tracking-[0.15em]">
-        TARGET: {ANNIVERSARY_DATE.toUTCString()}
-      </div>
+      {/* Target info & Retro Loadbar */}
+      <div className="pt-4 border-t border-[#222633] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div className="font-mono text-[0.65rem] text-[#8C9098] tracking-wider">
+          TARGET: <span className="text-[#F0B429]">SEPTEMBER 16, 2026</span> · 00:00 UTC
+        </div>
 
-      {/* Load bar */}
-      <div className="w-full max-w-xs h-1.5 bg-card border border-card-line overflow-hidden">
-        <motion.div
-          className="h-full"
-          style={{
-            background: "repeating-linear-gradient(45deg, #E53935, #E53935 4px, #9B0000 4px, #9B0000 8px)"
-          }}
-          animate={prefersReduced ? {} : { width: ["6%", "96%"] }}
-          transition={{ duration: 2.4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
-        />
+        <div className="w-full sm:w-48 h-2 bg-[#060709] border border-[#222633] p-0.5 overflow-hidden">
+          <div className="h-full w-3/4 bg-gradient-to-r from-[#E53935] to-[#F0B429]" />
+        </div>
       </div>
     </div>
   );
