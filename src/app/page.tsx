@@ -1,15 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import FloatingPokeballs from "@/components/ui/FloatingPokeballs";
-import FlameSVG from "@/components/ui/FlameSVG";
 import PackCarousel from "@/components/ui/PackCarousel";
-
-const PALETTE = [
-  "#e8384f", "#f0b429", "#3aa0c9", "#7fbf6a",
-  "#c78ce0", "#e08a4c", "#5ec9b0", "#e0576f",
-  "#f2d98a", "#8ea6e0", "#d67ab8", "#9ecf5b"
-];
 
 const FAQ_ITEMS = [
   {
@@ -31,21 +25,11 @@ const FAQ_ITEMS = [
 ];
 
 export default function Home() {
-  const [mounted, setMounted] = useState(false);
-  const [squares, setSquares] = useState<{ color: string; burned: boolean }[]>([]);
   const [timeLeft, setTimeLeft] = useState({ dd: "15", hh: "12", mm: "10", ss: "38" });
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  // Initialize deterministic mosaic (14x8 = 112 squares)
+  // Initialize Countdown
   useEffect(() => {
-    setMounted(true);
-    const total = 14 * 8;
-    const initialSquares = Array.from({ length: total }, (_, i) => ({
-      color: PALETTE[i % PALETTE.length],
-      burned: false,
-    }));
-    setSquares(initialSquares);
-
     const target = new Date("2026-09-16T00:00:00Z").getTime();
     const tick = () => {
       const now = Date.now();
@@ -67,14 +51,6 @@ export default function Home() {
     const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
   }, []);
-
-  const handleSquareClick = (index: number) => {
-    setSquares((prev) => {
-      const next = [...prev];
-      next[index] = { ...next[index], burned: !next[index].burned };
-      return next;
-    });
-  };
 
   return (
     <>
@@ -120,8 +96,8 @@ export default function Home() {
           </div>
         </div>
         <div className="navlinks">
-          <a href="#collection">Collection</a>
-          <a href="#mechanics">Mint & Packs</a>
+          <a href="#showcase">Collection</a>
+          <a href="#mechanics">Mint &amp; Packs</a>
           <a href="#timeline">Timeline</a>
           <a href="#faq">FAQ</a>
         </div>
@@ -171,35 +147,132 @@ export default function Home() {
             <div className="lbl">SEC</div>
           </div>
         </div>
+      </section>
 
-        {/* Mosaic Archive (14x8 Grid - Compact on Mobile & Desktop) */}
-        <div className="mosaic-wrap bracketed" id="collection">
-          <span className="bl" />
-          <span className="br" />
-          <div className="mosaic">
-            {(mounted ? squares : Array.from({ length: 112 }, (_, i) => ({ color: PALETTE[i % PALETTE.length], burned: false }))).map((sq, i) => (
-              <div
-                key={i}
-                onClick={() => handleSquareClick(i)}
-                className={`sq ${sq.burned ? "burned" : ""}`}
-                style={{
-                  ["--c" as string]: sq.color,
-                }}
-                title={`Card #${(i + 1).toString().padStart(4, "0")}`}
-              >
-                {/* SVG Fire / Glyph Overlay instead of emoji */}
-                <div className="glyph-overlay">
-                  {sq.burned ? (
-                    <FlameSVG size={14} color="#e8384f" />
-                  ) : (
-                    <span className="text-[#f0b429] font-mono text-[0.65rem] leading-none">✦</span>
-                  )}
+      {/* ALTERNATING 3-ROW FEATURE SHOWCASE (Image-Copy / Copy-Image / Image-Copy) */}
+      <section id="showcase" style={{ paddingTop: "20px" }}>
+        <div className="section-head">
+          <div className="eyebrow pixel">30TH ANNIVERSARY ARCHIVE</div>
+          <h2>Preserved on-chain. Sealed in Tokyo.</h2>
+          <p>Every piece is an authentic graded tribute to the origins of the card hobby.</p>
+        </div>
+
+        <div className="feature-showcase">
+          {/* ROW 1: Image (Left) + Copy (Right) - Featuring Umbreon ex SAR #044 */}
+          <div className="feature-row">
+            <div className="feature-media">
+              <div className="feature-img-frame">
+                <Image
+                  src="/mf_044_6r7dmqt2.png"
+                  alt="Umbreon ex Special Art Rare 30th Anniversary Card"
+                  fill
+                  sizes="(max-width: 768px) 220px, 260px"
+                  style={{ objectFit: "contain" }}
+                  priority
+                />
+              </div>
+            </div>
+            <div className="feature-copy">
+              <div className="stamp" style={{ width: "fit-content" }}>
+                01 // 30TH SPECIAL ART RARE
+              </div>
+              <h3>4,444 Illustrated Cards Pulled from 100 Lineages</h3>
+              <p>
+                Each card represents an immutable on-chain record celebrating the iconic evolutions and starter lineups from the first generation. Shown above: <strong>Umbreon ex SAR (#044/040)</strong> with 30th Anniversary night fireworks festival art by REND.
+              </p>
+              <div className="feature-stats">
+                <div className="feature-stat-pill">
+                  <div className="val">4,444</div>
+                  <div className="lbl">SUPPLY</div>
+                </div>
+                <div className="feature-stat-pill">
+                  <div className="val">100</div>
+                  <div className="lbl">LINEAGES</div>
+                </div>
+                <div className="feature-stat-pill">
+                  <div className="val">GEM-MT 10</div>
+                  <div className="lbl">GRADE</div>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
-          <div className="mosaic-caption">
-            Hover a card — <b>every square can burn.</b> That&apos;s the whole game.
+
+          {/* ROW 2: Copy (Left) + Image (Right) - Featuring Official Holographic Card Back */}
+          <div className="feature-row reverse">
+            <div className="feature-copy">
+              <div className="stamp" style={{ width: "fit-content" }}>
+                02 // DUAL UTILITY
+              </div>
+              <h3>Hold Your Digital Grail. Or Burn for Real Foil.</h3>
+              <p>
+                Your card stays yours forever as a permanent on-chain collectible with authentic holographic reverse backing. Or send three cards to the burn address to receive a raffle ticket for 1 of 1,000 real physical 30th Anniversary booster packs.
+              </p>
+              <div className="feature-stats">
+                <div className="feature-stat-pill">
+                  <div className="val">50%</div>
+                  <div className="lbl">HIT RATE</div>
+                </div>
+                <div className="feature-stat-pill">
+                  <div className="val">1 IN 2</div>
+                  <div className="lbl">RAFFLE ODDS</div>
+                </div>
+                <div className="feature-stat-pill">
+                  <div className="val">PERMANENT</div>
+                  <div className="lbl">NO EXPIRY</div>
+                </div>
+              </div>
+            </div>
+            <div className="feature-media">
+              <div className="feature-img-frame">
+                <Image
+                  src="/card_back_ddd236d4.webp"
+                  alt="Official 30th Graded Holographic Card Back"
+                  fill
+                  sizes="(max-width: 768px) 220px, 260px"
+                  style={{ objectFit: "contain" }}
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* ROW 3: Image (Left) + Copy (Right) - Featuring Authentic Japanese 30th Booster Pack */}
+          <div className="feature-row">
+            <div className="feature-media">
+              <div className="feature-img-frame">
+                <Image
+                  src="/pack0.jpg"
+                  alt="30th Anniversary Japanese Sealed Booster Pack"
+                  fill
+                  sizes="(max-width: 768px) 220px, 260px"
+                  style={{ objectFit: "contain" }}
+                  priority
+                />
+              </div>
+            </div>
+            <div className="feature-copy">
+              <div className="stamp" style={{ width: "fit-content" }}>
+                03 // PHYSICAL REWARDS
+              </div>
+              <h3>1,000 Sealed Japanese Booster Packs Direct from Tokyo</h3>
+              <p>
+                Sourced directly from authorized Japanese retail distribution stock in Tokyo. Each sealed foil pack contains 6 random Japanese cards, all guaranteed holographic, with insured international fulfillment for all raffle winners.
+              </p>
+              <div className="feature-stats">
+                <div className="feature-stat-pill">
+                  <div className="val">1,000</div>
+                  <div className="lbl">PACKS IN POOL</div>
+                </div>
+                <div className="feature-stat-pill">
+                  <div className="val">6 CARDS</div>
+                  <div className="lbl">ALL-HOLO</div>
+                </div>
+                <div className="feature-stat-pill">
+                  <div className="val">TOKYO</div>
+                  <div className="lbl">DIRECT SOURCING</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -245,7 +318,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* High-Visibility Physical Pack Showcase Carousel (pack0.jpg, pack.jpg, pack1.webp, pack2.webp) */}
+        {/* High-Visibility Physical Pack & Card Showcase Carousel with Mobile Carousel View */}
         <PackCarousel />
       </section>
 

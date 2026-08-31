@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 interface VaultItem {
@@ -15,12 +15,12 @@ interface VaultItem {
 }
 
 const VAULT_ITEMS: VaultItem[] = [
-  // Physical Packs & Boxes (pack0.jpg and pack.jpg only)
+  // Physical Packs & Boxes (Authentic Tokyo Stock)
   {
     id: "pack0",
     src: "/pack0.jpg",
     title: "30th Celebration Foil Pack",
-    subtitle: "Sealed 6-Card Japanese Pack · All-Holo",
+    subtitle: "Sealed 6-Card Japanese Pack · All-Holo Guaranteed",
     tag: "★ 1/1,000 POOL",
     tagColor: "var(--gold)",
     type: "pack",
@@ -29,143 +29,143 @@ const VAULT_ITEMS: VaultItem[] = [
   {
     id: "pack",
     src: "/pack.jpg",
-    title: "Sealed Display Box Case",
-    subtitle: "Tokyo Retail Direct · Factory Sealed",
+    title: "Sealed Booster Display Box",
+    subtitle: "Tokyo Retail Direct Stock · Factory Sealed Case",
     tag: "★ JPN IMPORT",
     tagColor: "var(--crimson)",
     type: "pack",
     grade: "BOX CASE",
   },
-  // Newly Added Illustrated Graded Cards
+  // Exact Pokémon Cards from Japanese 30th Anniversary Collection (001-040+)
   {
-    id: "mf_025",
-    src: "/mf_025_08nz8hf8.png",
-    title: "Pikachu — Lineage #025",
-    subtitle: "30th Anniversary Illustrated Graded Card",
-    tag: "★ GEM-MT 10",
-    tagColor: "var(--gold)",
-    type: "card",
-    grade: "PSA 10 GEM",
-  },
-  {
-    id: "mf_006",
-    src: "/mf_006_pi1yv6sl.png",
-    title: "Charizard — Lineage #006",
-    subtitle: "Original Starter Final Evolution Holo",
-    tag: "★ 1ST EDITION",
+    id: "mf_044",
+    src: "/mf_044_6r7dmqt2.png",
+    title: "Umbreon ex (ブラッキーex) SAR",
+    subtitle: "#044/040 · 30th Fireworks Art · Illus. REND",
+    tag: "★ SPECIAL ART",
     tagColor: "var(--crimson)",
-    type: "card",
-    grade: "GEM-MT 10",
-  },
-  {
-    id: "mf_003",
-    src: "/mf_003_yg0d6gsk.png",
-    title: "Venusaur — Lineage #003",
-    subtitle: "Kanto Grass Starter Final Lineage",
-    tag: "★ HOLO RARE",
-    tagColor: "#7fbf6a",
-    type: "card",
-    grade: "MINT 9",
-  },
-  {
-    id: "mf_007",
-    src: "/mf_007_payx7sz3.png",
-    title: "Squirtle — Lineage #007",
-    subtitle: "Classic Kanto Water Starter Icon",
-    tag: "★ BASE SET",
-    tagColor: "#3aa0c9",
-    type: "card",
-    grade: "GEM-MT 10",
-  },
-  {
-    id: "mf_014",
-    src: "/mf_014_bxcy7qxm.png",
-    title: "Kakuna — Lineage #014",
-    subtitle: "Cocoon Lineage Stage 1 Evolution",
-    tag: "★ 100 LINEAGES",
-    tagColor: "#f2d98a",
-    type: "card",
-    grade: "NM-MT 8",
-  },
-  {
-    id: "mf_017",
-    src: "/mf_017_jb595z9n.png",
-    title: "Pidgeotto — Lineage #017",
-    subtitle: "Route 1 Flying Icon Lineage",
-    tag: "★ ON-CHAIN",
-    tagColor: "#e08a4c",
-    type: "card",
-    grade: "MINT 9",
-  },
-  {
-    id: "mf_019",
-    src: "/mf_019_d0y2y1vw.png",
-    title: "Rattata — Lineage #019",
-    subtitle: "Classic Early Route Normal Type",
-    tag: "★ BASE SET",
-    tagColor: "#c78ce0",
-    type: "card",
-    grade: "GEM-MT 10",
-  },
-  {
-    id: "mf_020",
-    src: "/mf_020_0xdyu6bp.png",
-    title: "Raticate — Lineage #020",
-    subtitle: "Stage 1 Hyper Fang Evolution",
-    tag: "★ ON-CHAIN",
-    tagColor: "#e0576f",
-    type: "card",
-    grade: "NM-MT 8",
-  },
-  {
-    id: "mf_026",
-    src: "/mf_026_nq2n1bl7.png",
-    title: "Raichu — Lineage #026",
-    subtitle: "Thunderstone Evolution Lightning Holo",
-    tag: "★ HOLO RARE",
-    tagColor: "var(--gold)",
     type: "card",
     grade: "GEM-MT 10",
   },
   {
     id: "mf_043",
     src: "/mf_043_krhzgm1o.png",
-    title: "Oddish — Lineage #043",
-    subtitle: "Night-Blooming Weed Pokemon Lineage",
-    tag: "★ 100 LINEAGES",
-    tagColor: "#5ec9b0",
+    title: "Espeon ex (エーフィex) SAR",
+    subtitle: "#043/040 · 30th Festival Day Art · Illus. REND",
+    tag: "★ SPECIAL ART",
+    tagColor: "#c78ce0",
+    type: "card",
+    grade: "GEM-MT 10",
+  },
+  {
+    id: "mf_017",
+    src: "/mf_017_jb595z9n.png",
+    title: "Umbreon ex (ブラッキーex)",
+    subtitle: "#017/040 · Darkness Type HP 270 · Illus. Keisuke Azuma",
+    tag: "★ DOUBLE RARE",
+    tagColor: "var(--crimson)",
+    type: "card",
+    grade: "GEM-MT 10",
+  },
+  {
+    id: "mf_014",
+    src: "/mf_014_bxcy7qxm.png",
+    title: "Espeon ex (エーフィex)",
+    subtitle: "#014/040 · Psychic Type HP 260 · Illus. 5ban Graphics",
+    tag: "★ DOUBLE RARE",
+    tagColor: "#c78ce0",
+    type: "card",
+    grade: "GEM-MT 10",
+  },
+  {
+    id: "mf_025",
+    src: "/mf_025_08nz8hf8.png",
+    title: "Eevee (イーブイ) Meadow",
+    subtitle: "#025/040 · Daylight Meadow · Illus. En Morikura",
+    tag: "★ 30TH STAMP",
+    tagColor: "var(--gold)",
+    type: "card",
+    grade: "PSA 10 GEM",
+  },
+  {
+    id: "mf_026",
+    src: "/mf_026_nq2n1bl7.png",
+    title: "Eevee (イーブイ) Moonlit",
+    subtitle: "#026/040 · Starry Night Sky · Illus. Hitoshi Ariga",
+    tag: "★ 30TH STAMP",
+    tagColor: "#3aa0c9",
     type: "card",
     grade: "MINT 9",
   },
   {
-    id: "mf_044",
-    src: "/mf_044_6r7dmqt2.png",
-    title: "Gloom — Lineage #044",
-    subtitle: "Poison Scent Evolution Stage 1",
-    tag: "★ ON-CHAIN",
-    tagColor: "#8ea6e0",
+    id: "mf_007",
+    src: "/mf_007_payx7sz3.png",
+    title: "Zeraora (ゼラオラ)",
+    subtitle: "#007/040 · Lightning Mythical HP 110 · Illus. Bun Toujo",
+    tag: "★ MYTHICAL",
+    tagColor: "var(--gold)",
+    type: "card",
+    grade: "GEM-MT 10",
+  },
+  {
+    id: "mf_006",
+    src: "/mf_006_pi1yv6sl.png",
+    title: "Victini (ビクティニ)",
+    subtitle: "#006/040 · Victory Pokemon HP 80 · Illus. Jiro Sasumo",
+    tag: "★ MYTHICAL",
+    tagColor: "var(--crimson)",
+    type: "card",
+    grade: "GEM-MT 10",
+  },
+  {
+    id: "mf_020",
+    src: "/mf_020_0xdyu6bp.png",
+    title: "Zoroark (ゾロアーク)",
+    subtitle: "#020/040 · Night Illusionist HP 120 · Illus. Shiburingaru",
+    tag: "★ STAGE 1",
+    tagColor: "#e0576f",
     type: "card",
     grade: "NM-MT 8",
   },
   {
+    id: "mf_019",
+    src: "/mf_019_d0y2y1vw.png",
+    title: "Zorua (ゾロア)",
+    subtitle: "#019/040 · Tricky Fox Pokemon HP 70 · Illus. Atsuya Uki",
+    tag: "★ 30TH STAMP",
+    tagColor: "#8ea6e0",
+    type: "card",
+    grade: "MINT 9",
+  },
+  {
+    id: "mf_003",
+    src: "/mf_003_yg0d6gsk.png",
+    title: "Cherrim (チェリム) Sunshine",
+    subtitle: "#003/040 · Blossom Stage 1 HP 80 · Illus. takashi shiraishi",
+    tag: "★ STAGE 1",
+    tagColor: "#7fbf6a",
+    type: "card",
+    grade: "MINT 9",
+  },
+  {
     id: "mf_002",
     src: "/mf_002_vq19w0yr.png",
-    title: "Ivysaur — Lineage #002",
-    subtitle: "Seed Pokémon Stage 1 Evolution",
-    tag: "★ STARTER EVO",
-    tagColor: "#7fbf6a",
+    title: "Cherubi (チェリンボ)",
+    subtitle: "#002/040 · Cherry Pokemon HP 40 · Illus. Kurata So",
+    tag: "★ 30TH STAMP",
+    tagColor: "#f2d98a",
     type: "card",
     grade: "GEM-MT 10",
   },
   {
     id: "card_back",
     src: "/card_back_ddd236d4.webp",
-    title: "Official 30th Graded Card Back",
-    subtitle: "Authentic Holographic Foil Reverse Backing",
+    title: "Official Graded Card Back",
+    subtitle: "30th Anniversary Holographic Reverse Backing",
     tag: "★ AUTHENTIC",
     tagColor: "var(--gold)",
     type: "card",
-    grade: "SECURITY FOIL",
+    grade: "REVERSE FOIL",
   },
 ];
 
@@ -173,6 +173,17 @@ export default function PackCarousel() {
   const [filter, setFilter] = useState<"all" | "packs" | "cards">("all");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const filteredItems = VAULT_ITEMS.filter((item) => {
     if (filter === "packs") return item.type === "pack";
@@ -180,12 +191,11 @@ export default function PackCarousel() {
     return true;
   });
 
-  // Ensure index stays in bounds when filter changes
   useEffect(() => {
     setCurrentIndex(0);
   }, [filter]);
 
-  // Auto rotate every 3.5 seconds when not hovered
+  // Auto rotate when not hovered
   useEffect(() => {
     if (!isAutoPlay || filteredItems.length <= 1) return;
     const timer = setInterval(() => {
@@ -204,11 +214,34 @@ export default function PackCarousel() {
     setCurrentIndex((prev) => (prev + 1) % filteredItems.length);
   };
 
+  // Touch swipe support for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+    if (diff > 40) {
+      handleNext();
+    } else if (diff < -40) {
+      handlePrev();
+    }
+    touchStartX.current = null;
+  };
+
+  // On desktop: show 4 items per page; on mobile: show 1 item at a time in carousel
+  const desktopPageStart = Math.floor(currentIndex / 4) * 4;
+  const visibleDesktopItems = filteredItems.slice(desktopPageStart, desktopPageStart + 4);
+
   return (
     <div
       className="pack-vault-wrap"
       onMouseEnter={() => setIsAutoPlay(false)}
       onMouseLeave={() => setIsAutoPlay(true)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       {/* Top Header Bar */}
       <div className="pack-vault-head">
@@ -220,7 +253,7 @@ export default function PackCarousel() {
         </div>
 
         {/* Filter Pills */}
-        <div style={{ display: "flex", gap: "8px" }}>
+        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
           <button
             type="button"
             onClick={() => setFilter("all")}
@@ -298,55 +331,92 @@ export default function PackCarousel() {
         </div>
       </div>
 
-      {/* Cards Grid */}
-      <div className="pack-carousel-grid">
-        {filteredItems.slice(0, 8).map((item, index) => {
-          const isSelected = index === currentIndex % Math.min(8, filteredItems.length);
-          return (
-            <div
-              key={item.id}
-              onClick={() => {
-                setIsAutoPlay(false);
-                setCurrentIndex(index);
-              }}
-              className={`pack-card ${isSelected ? "active" : ""}`}
-            >
+      {/* Mobile Single Card Carousel View */}
+      {isMobile ? (
+        <div className="mobile-carousel-container" style={{ width: "100%", overflow: "hidden" }}>
+          {filteredItems[currentIndex] && (
+            <div className="pack-card active" style={{ maxWidth: "320px", margin: "0 auto" }}>
               <div className="pack-card-head">
-                <span className="pack-card-tag" style={{ color: item.tagColor }}>
-                  {item.tag}
+                <span className="pack-card-tag" style={{ color: filteredItems[currentIndex].tagColor }}>
+                  {filteredItems[currentIndex].tag}
                 </span>
                 <span className="pack-card-num">
-                  {item.grade || `#0${index + 1}`}
+                  {filteredItems[currentIndex].grade || `#0${currentIndex + 1}`}
                 </span>
               </div>
 
-              {/* Card / Pack Image Container with explicit height */}
               <div
                 className="pack-card-img-wrap"
-                style={{ position: "relative", width: "100%", height: "230px" }}
+                style={{ position: "relative", width: "100%", height: "260px" }}
               >
                 <Image
-                  src={item.src}
-                  alt={item.title}
+                  src={filteredItems[currentIndex].src}
+                  alt={filteredItems[currentIndex].title}
                   fill
-                  sizes="(max-width: 540px) 90vw, (max-width: 900px) 45vw, 230px"
+                  sizes="320px"
                   style={{ objectFit: "contain", padding: "6px" }}
-                  priority={index < 4}
+                  priority
                 />
               </div>
 
               <div className="pack-card-info">
-                <div className="pack-card-title">{item.title}</div>
-                <div className="pack-card-sub">{item.subtitle}</div>
+                <div className="pack-card-title">{filteredItems[currentIndex].title}</div>
+                <div className="pack-card-sub">{filteredItems[currentIndex].subtitle}</div>
               </div>
             </div>
-          );
-        })}
-      </div>
+          )}
+        </div>
+      ) : (
+        /* Desktop Multi-Card Grid View */
+        <div className="pack-carousel-grid">
+          {visibleDesktopItems.map((item, index) => {
+            const actualIndex = desktopPageStart + index;
+            const isSelected = actualIndex === currentIndex;
+            return (
+              <div
+                key={item.id}
+                onClick={() => {
+                  setIsAutoPlay(false);
+                  setCurrentIndex(actualIndex);
+                }}
+                className={`pack-card ${isSelected ? "active" : ""}`}
+              >
+                <div className="pack-card-head">
+                  <span className="pack-card-tag" style={{ color: item.tagColor }}>
+                    {item.tag}
+                  </span>
+                  <span className="pack-card-num">
+                    {item.grade || `#0${actualIndex + 1}`}
+                  </span>
+                </div>
+
+                <div
+                  className="pack-card-img-wrap"
+                  style={{ position: "relative", width: "100%", height: "230px" }}
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 900px) 45vw, 230px"
+                    style={{ objectFit: "contain", padding: "6px" }}
+                    priority={index < 4}
+                  />
+                </div>
+
+                <div className="pack-card-info">
+                  <div className="pack-card-title">{item.title}</div>
+                  <div className="pack-card-sub">{item.subtitle}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       {/* Dots Indicator */}
       <div className="pack-dots-wrap">
-        {filteredItems.slice(0, 8).map((_, i) => (
+        {filteredItems.map((_, i) => (
           <button
             key={i}
             type="button"
@@ -354,7 +424,7 @@ export default function PackCarousel() {
               setIsAutoPlay(false);
               setCurrentIndex(i);
             }}
-            className={`pack-dot ${i === currentIndex % Math.min(8, filteredItems.length) ? "active" : ""}`}
+            className={`pack-dot ${i === currentIndex ? "active" : ""}`}
             aria-label={`Go to item ${i + 1}`}
           />
         ))}
