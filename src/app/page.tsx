@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Pikachu30Logo from "@/components/ui/Pikachu30Logo";
 import FloatingPokeballs from "@/components/ui/FloatingPokeballs";
 import FlameSVG from "@/components/ui/FlameSVG";
 
@@ -15,7 +14,7 @@ const PALETTE = [
 const FAQ_ITEMS = [
   {
     q: "What actually happens when I burn?",
-    a: "Three faces are sent to a burn address on-chain and you receive one raffle ticket. The faces are gone for good — this is a one-way trade toward the physical pack pool.",
+    a: "Three cards are sent to a burn address on-chain and you receive one raffle ticket. The cards are gone for good — this is a one-way trade toward the physical pack pool.",
   },
   {
     q: "What's the 50% number based on?",
@@ -92,7 +91,7 @@ export default function Home() {
           <span>•</span>
           <span>1996 - 2026</span>
           <span>•</span>
-          <span>4,444 FACES ON-CHAIN</span>
+          <span>4,444 CARDS ON-CHAIN</span>
           <span>•</span>
           <span>1,000 PHYSICAL PACKS</span>
           <span>•</span>
@@ -102,7 +101,7 @@ export default function Home() {
           <span>•</span>
           <span>1996 - 2026</span>
           <span>•</span>
-          <span>4,444 FACES ON-CHAIN</span>
+          <span>4,444 CARDS ON-CHAIN</span>
           <span>•</span>
           <span>1,000 PHYSICAL PACKS</span>
           <span>•</span>
@@ -110,17 +109,14 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Sticky Navigation */}
+      {/* Clean Sticky Navigation (Pikachu logo removed) */}
       <nav>
         <div className="logo">
           <div className="dpad">
             <div className="dpad-center" />
           </div>
-          <div className="flex items-center gap-2">
-            <Pikachu30Logo size={26} />
-            <div>
-              GRADED <span>/// 30TH</span>
-            </div>
+          <div>
+            GRADED <span>/// 30TH</span>
           </div>
         </div>
         <div className="navlinks">
@@ -133,19 +129,14 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="hero">
-        <div className="eyebrow pixel">STEALTH MINT · SEPT 16</div>
-
-        {/* Center Pikachu 30th Logo Badge */}
-        <div className="mb-3">
-          <Pikachu30Logo size={68} />
-        </div>
+        <div className="eyebrow pixel">PUBLIC MINT · SEPT 16</div>
 
         <h1>
           Built for those who <em>never</em> stopped collecting.
         </h1>
         
         <p className="sub">
-          4,444 pixel-faced PFPs pulled from 40 of the most recognizable lineups in the hobby, minted on-chain for the 30th anniversary. Hold your face forever, or burn three and chase 1 of 1,000 real anniversary packs.
+          4,444 illustrated graded cards pulled from 100 of the most recognizable lineups in the Pokemon world, minted on-chain for the 30th anniversary. Hold your illustrated card forever, or burn three and chase 1 of 1,000 real anniversary packs.
         </p>
         
         <div className="cta-row">
@@ -194,7 +185,7 @@ export default function Home() {
                 style={{
                   ["--c" as string]: sq.color,
                 }}
-                title={`Face #${(i + 1).toString().padStart(4, "0")}`}
+                title={`Card #${(i + 1).toString().padStart(4, "0")}`}
               >
                 {/* SVG Fire / Glyph Overlay instead of emoji */}
                 <div className="glyph-overlay">
@@ -208,7 +199,7 @@ export default function Home() {
             ))}
           </div>
           <div className="mosaic-caption">
-            Hover a face — <b>every square can burn.</b> That&apos;s the whole game.
+            Hover a card — <b>every square can burn.</b> That&apos;s the whole game.
           </div>
         </div>
       </section>
@@ -217,7 +208,7 @@ export default function Home() {
       <section id="mechanics">
         <div className="section-head">
           <div className="eyebrow pixel">TWO WAYS TO PLAY</div>
-          <h2>Keep the face. Or chase the pack.</h2>
+          <h2>Keep the card. Or chase the pack.</h2>
           <p>No forced choice at mint. Decide later, decide never — the option stays open as long as you&apos;re holding.</p>
         </div>
 
@@ -229,8 +220,8 @@ export default function Home() {
               <span className="stamp" style={{ position: "absolute", top: "20px", right: "20px" }}>
                 NM-MT
               </span>
-              <h3>Keep it as a PFP</h3>
-              <p>Your face stays exactly as minted — on-chain, untouched, yours. A permanent record of the anniversary, not a wrapper for something else.</p>
+              <h3>Keep it as an Illustrated Card</h3>
+              <p>Your card stays exactly as minted — on-chain, untouched, yours. A permanent record of the anniversary, not a wrapper for something else.</p>
             </div>
             <div className="stat">
               <span className="n">4,444</span>
@@ -238,47 +229,47 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Path 2: BURN (With compact, highly responsive mini pack cards for pack0.jpg and pack.jpg) */}
+          {/* Path 2: BURN (Featuring highlighted cards for pack0.jpg and pack.jpg) */}
           <div className="path burn">
             <div>
               <span className="tag pixel">BURN</span>
               <h3>Burn 3, roll for a pack</h3>
-              <p>Send three faces to the raffle and you&apos;re in the pool for one of 1,000 real 30th Anniversary packs, sourced direct from one of the first retailers in Japan to carry the drop.</p>
+              <p>Send three cards to the raffle and you&apos;re in the pool for one of 1,000 real 30th Anniversary packs, sourced direct from one of the first retailers in Japan to carry the drop.</p>
 
-              {/* Compact Mini Pack & Box Cards */}
+              {/* Highlighted Pack & Box Cards */}
               <div className="mini-pack-grid">
-                {/* Mini Card 1: Pack0.jpg */}
+                {/* Highlighted Card 1: Pack0.jpg */}
                 <div className="mini-pack-card">
                   <div className="mini-pack-thumb">
                     <Image
                       src="/pack0.jpg"
                       alt="Sealed Booster Foil Pack"
                       fill
-                      className="object-contain p-0.5"
-                      sizes="44px"
+                      className="object-contain p-1"
+                      sizes="(max-width: 768px) 54px, 60px"
                     />
                   </div>
                   <div className="mini-pack-info">
                     <div className="mini-pack-title">30th Booster Pack</div>
-                    <div className="mini-pack-sub">6 Holo Cards / Sealed</div>
-                    <div className="mini-pack-badge">★ 1/1,000 POOL</div>
+                    <div className="mini-pack-sub">6 Holo Cards · Sealed Foil</div>
+                    <div className="mini-pack-badge">★ 1 OF 1,000 POOL</div>
                   </div>
                 </div>
 
-                {/* Mini Card 2: Pack.jpg */}
+                {/* Highlighted Card 2: Pack.jpg */}
                 <div className="mini-pack-card">
                   <div className="mini-pack-thumb">
                     <Image
                       src="/pack.jpg"
-                      alt="Sealed Booster Display Box"
+                      alt="Sealed Booster Display Box Case"
                       fill
-                      className="object-contain p-0.5"
-                      sizes="44px"
+                      className="object-contain p-1"
+                      sizes="(max-width: 768px) 54px, 60px"
                     />
                   </div>
                   <div className="mini-pack-info">
-                    <div className="mini-pack-title">Display Box Case</div>
-                    <div className="mini-pack-sub">Tokyo Retail Direct</div>
+                    <div className="mini-pack-title">Booster Display Box</div>
+                    <div className="mini-pack-sub">Tokyo Retail Direct Stock</div>
                     <div className="mini-pack-badge">★ JPN IMPORT</div>
                   </div>
                 </div>
@@ -300,7 +291,7 @@ export default function Home() {
           <div className="l">SUPPLY</div>
         </div>
         <div className="stat-item">
-          <div className="n mono">40</div>
+          <div className="n mono">100</div>
           <div className="l">LINEAGES + EVOS</div>
         </div>
         <div className="stat-item">
@@ -323,7 +314,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* TIMELINE SECTION */}
+      {/* TIMELINE SECTION (Stealth replaced with Public Contract / Public Mint) */}
       <section id="timeline">
         <div className="section-head">
           <div className="eyebrow pixel">NO ROADMAP, JUST DATES</div>
@@ -334,16 +325,16 @@ export default function Home() {
             <div className="dot" />
             <div>
               <div className="when mono">NOW</div>
-              <h4>Stealth</h4>
-              <p>No allowlist, no whitelist grind. Contract goes live when it goes live.</p>
+              <h4>Public Contract</h4>
+              <p>No allowlist, no whitelist grind. Contract goes live on-chain.</p>
             </div>
           </div>
           <div className="tl-item active">
             <div className="dot" />
             <div>
               <div className="when mono">SEPT 16</div>
-              <h4>Mint opens</h4>
-              <p>4,444 faces available. Public, first come, first served.</p>
+              <h4>Public Mint opens</h4>
+              <p>4,444 cards available. Public, first come, first served.</p>
             </div>
           </div>
           <div className="tl-item">
@@ -351,7 +342,7 @@ export default function Home() {
             <div>
               <div className="when mono">POST-MINT</div>
               <h4>Burn window opens</h4>
-              <p>Burn 3 faces to enter the raffle whenever you&apos;re ready — no deadline pressure.</p>
+              <p>Burn 3 cards to enter the raffle whenever you&apos;re ready — no deadline pressure.</p>
             </div>
           </div>
           <div className="tl-item">

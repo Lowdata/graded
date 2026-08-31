@@ -277,7 +277,7 @@ h1 em {
 
 .sub {
   margin-top: 22px;
-  max-width: 580px;
+  max-width: 620px;
   color: var(--mist);
   font-size: 1.02rem;
   line-height: 1.6;
@@ -463,39 +463,43 @@ section { padding: 100px 5vw; position: relative; z-index: 2; }
 .path .stat .n { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; color: var(--paper); }
 .path .stat .l { font-size: 0.65rem; color: var(--mist); letter-spacing: 0.08em; }
 
-/* ---------- COMPACT MINI PACK CARDS (RESPONSIVE) ---------- */
+/* ---------- COMPACT & HIGHLIGHTED PACK CARDS ---------- */
 .mini-pack-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 12px;
+  margin-top: 22px;
 }
 
 .mini-pack-card {
-  background: #0d0e12;
-  border: 1px solid var(--card-line);
-  padding: 8px 10px;
+  background: #101217;
+  border: 1px solid rgba(240, 180, 41, 0.3);
+  padding: 10px 12px;
   display: flex;
   align-items: center;
   gap: 12px;
-  border-radius: 2px;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 
 .mini-pack-card:hover {
-  border-color: var(--gold-dim);
-  transform: translateY(-1px);
+  border-color: var(--gold);
+  background: #151820;
+  box-shadow: 0 6px 20px rgba(240, 180, 41, 0.15);
+  transform: translateY(-2px);
 }
 
 .mini-pack-thumb {
   position: relative;
-  width: 44px;
-  height: 68px;
+  width: 54px;
+  height: 82px;
   flex-shrink: 0;
   border-radius: 2px;
   overflow: hidden;
-  background: #040507;
-  border: 1px solid rgba(240, 180, 41, 0.3);
+  background: #060709;
+  border: 1px solid rgba(240, 180, 41, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .mini-pack-info {
@@ -505,26 +509,30 @@ section { padding: 100px 5vw; position: relative; z-index: 2; }
 }
 
 .mini-pack-title {
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--paper);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  letter-spacing: -0.01em;
 }
 
 .mini-pack-sub {
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   color: var(--mist);
   margin-top: 2px;
+  line-height: 1.3;
 }
 
 .mini-pack-badge {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.45rem;
+  font-size: 0.48rem;
   color: var(--gold);
-  margin-top: 4px;
+  margin-top: 6px;
   letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
 }
 
 /* ---------- STATS STRIP ---------- */
@@ -638,7 +646,7 @@ footer .social a:hover { color: var(--paper); }
 
   .paths { grid-template-columns: 1fr; }
   .path { padding: 32px 20px; }
-  .mini-pack-grid { grid-template-columns: 1fr; gap: 8px; }
+  .mini-pack-grid { grid-template-columns: 1fr; gap: 10px; }
   .stats { grid-template-columns: 1fr 1fr; }
   .stat-item { padding: 24px 14px; }
   .stat-item:nth-child(2) { border-right: none; }
