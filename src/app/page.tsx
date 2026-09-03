@@ -60,48 +60,51 @@ export default function Home() {
       {/* Floating Pokéballs in background */}
       <FloatingPokeballs />
 
-      {/* Top Japanese Marquee Bar */}
-      <div className="marquee-wrap">
-        <div className="marquee-content">
-          <span>ポケットモンスター 30周年記念プロジェクト</span>
-          <span>•</span>
-          <span>1996 - 2026</span>
-          <span>•</span>
-          <span>4,444 CARDS ON-CHAIN</span>
-          <span>•</span>
-          <span>1,000 PHYSICAL PACKS</span>
-          <span>•</span>
-          <span>冒険は、まだ終わらない。</span>
-          <span>•</span>
-          <span>ポケットモンスター 30周年記念プロジェクト</span>
-          <span>•</span>
-          <span>1996 - 2026</span>
-          <span>•</span>
-          <span>4,444 CARDS ON-CHAIN</span>
-          <span>•</span>
-          <span>1,000 PHYSICAL PACKS</span>
-          <span>•</span>
-          <span>冒険は、まだ終わらない。</span>
+      {/* Header with Marquee Strip and Navigation */}
+      <header className="header-wrapper">
+        {/* Top Japanese Marquee Bar */}
+        <div className="marquee-wrap">
+          <div className="marquee-content">
+            <span>ポケットモンスター 30周年記念プロジェクト</span>
+            <span>•</span>
+            <span>1996 - 2026</span>
+            <span>•</span>
+            <span>4,444 CARDS ON-CHAIN</span>
+            <span>•</span>
+            <span>1,000 PHYSICAL PACKS</span>
+            <span>•</span>
+            <span>冒険は、まだ終わらない。</span>
+            <span>•</span>
+            <span>ポケットモンスター 30周年記念プロジェクト</span>
+            <span>•</span>
+            <span>1996 - 2026</span>
+            <span>•</span>
+            <span>4,444 CARDS ON-CHAIN</span>
+            <span>•</span>
+            <span>1,000 PHYSICAL PACKS</span>
+            <span>•</span>
+            <span>冒険は、まだ終わらない。</span>
+          </div>
         </div>
-      </div>
 
-      {/* Clean Sticky Navigation */}
-      <nav>
-        <div className="logo">
-          <div className="dpad">
-            <div className="dpad-center" />
+        {/* Clean Sticky Navigation */}
+        <nav>
+          <div className="logo">
+            <div className="dpad">
+              <div className="dpad-center" />
+            </div>
+            <div>
+              GRADED <span>/// 30TH</span>
+            </div>
           </div>
-          <div>
-            GRADED <span>/// 30TH</span>
+          <div className="navlinks">
+            <a href="#showcase">Collection</a>
+            <a href="#mechanics">Mint &amp; Packs</a>
+            <a href="#timeline">Timeline</a>
+            <a href="#faq">FAQ</a>
           </div>
-        </div>
-        <div className="navlinks">
-          <a href="#showcase">Collection</a>
-          <a href="#mechanics">Mint &amp; Packs</a>
-          <a href="#timeline">Timeline</a>
-          <a href="#faq">FAQ</a>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
       {/* HERO SECTION */}
       <section className="hero">
