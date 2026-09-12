@@ -5,8 +5,8 @@ import PixelText from "@/components/ui/PixelText";
 
 export default function AnniversaryStats() {
   const statsList = [
-    { n: "4,444", l: "SUPPLY", jp: "総発行数" },
-    { n: "40", l: "LINEAGES + EVOS", jp: "系譜と進化" },
+    { n: "5,500", l: "SUPPLY", jp: "総発行数" },
+    { n: "250", l: "LINEAGES + EVOS", jp: "系譜と進化" },
     { n: "1,000", l: "PHYSICAL PACKS", jp: "実物パック" },
     { n: "1:2", l: "BURN ODDS", jp: "燃焼確率" },
   ];

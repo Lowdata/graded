@@ -57,7 +57,7 @@ export default function EvolutionShowcase() {
           <div className="flex items-center justify-center gap-3 mb-4">
             <Pokeball size="xs" color="#F0B429" />
             <PixelText size="xs" className="text-gold tracking-[0.25em]">
-              40 LINEAGES // EVOLUTION MATRIX
+              250 LINEAGES // EVOLUTION MATRIX
             </PixelText>
             <Pokeball size="xs" color="#F0B429" />
           </div>
@@ -67,7 +67,7 @@ export default function EvolutionShowcase() {
             <span className="golden-aura">進化の系譜</span>
           </h2>
           <p className="text-[#8C9098] text-sm md:text-base leading-relaxed">
-            Every face minted in the 4,444 collection belongs to an ancestral lineage. 
+            Every face minted in the 5,500 collection belongs to an ancestral lineage. 
             Evolve through battle experience or execute on-chain burns to ascend to ultimate collector tier.
           </p>
         </div>
@@ -154,7 +154,7 @@ export default function EvolutionShowcase() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Japanese Name with Golden Aura */}
+              {/* Name with Golden Aura */}
               <div className="mt-4 text-center">
                 <div className="font-jp text-lg font-bold golden-aura-intense tracking-widest">
                   {currentStage.jpName}

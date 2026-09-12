@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "GRADED — 30th Anniversary Collection",
   description:
-    "4,444 illustrated graded cards pulled from 100 of the most recognizable lineups in the Pokemon world, minted on-chain for the 30th anniversary. Hold your illustrated card forever, or burn three and chase 1 of 1,000 real anniversary packs.",
+    "5,500 illustrated graded cards pulled from 250 of the most recognizable lineups in the Pokemon world, minted on-chain for the 30th anniversary. Hold your illustrated card forever, or burn three and chase 1 of 1,000 real anniversary packs.",
   icons: {
     icon: "/favicon.svg",
     apple: "/favicon.svg",

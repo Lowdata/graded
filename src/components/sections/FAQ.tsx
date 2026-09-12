@@ -21,11 +21,11 @@ const FAQ_LIST = [
   },
   {
     q: "Where do the physical packs come from?",
-    a: "Sourced direct from authorized Japanese retail distribution partners in Tokyo carrying the official 30th Anniversary release. Shipped with insured international tracking to raffle winners.",
+    a: "Sourced direct from authorized retail distribution partners in Tokyo carrying the official 30th Anniversary release. Shipped with insured international tracking to raffle winners.",
   },
   {
-    q: "What are the 40 lineages included in the 4,444 faces?",
-    a: "The 40 lineages represent the most iconic evolutionary families from Kanto through Paldea (Charizard, Blastoise, Venusaur, Gengar, Pikachu, Eeveelutions, Mewtwo, Dragonite, Lucario, Rayquaza, and more).",
+    q: "What are the 250 lineages included in the 5,500 faces?",
+    a: "The 250 lineages represent the most iconic evolutionary families from Kanto through Paldea (Charizard, Blastoise, Venusaur, Gengar, Pikachu, Eeveelutions, Mewtwo, Dragonite, Lucario, Rayquaza, and more).",
   },
   {
     q: "When did Pokémon first begin?",

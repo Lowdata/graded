@@ -30,7 +30,7 @@ export default function Home() {
 
   // Initialize Countdown
   useEffect(() => {
-    const target = new Date("2026-09-16T00:00:00Z").getTime();
+    const target = new Date("2026-09-18T00:00:00Z").getTime();
     const tick = () => {
       const now = Date.now();
       let diff = Math.max(0, target - now);
@@ -62,14 +62,14 @@ export default function Home() {
 
       {/* Header with Marquee Strip and Navigation */}
       <header className="header-wrapper">
-        {/* Top Japanese Marquee Bar */}
+        {/* Top Marquee Bar */}
         <div className="marquee-wrap">
           <div className="marquee-content">
             <span>ポケットモンスター 30周年記念プロジェクト</span>
             <span>•</span>
             <span>1996 - 2026</span>
             <span>•</span>
-            <span>4,444 CARDS ON-CHAIN</span>
+            <span>5,500 CARDS ON-CHAIN</span>
             <span>•</span>
             <span>1,000 PHYSICAL PACKS</span>
             <span>•</span>
@@ -79,7 +79,7 @@ export default function Home() {
             <span>•</span>
             <span>1996 - 2026</span>
             <span>•</span>
-            <span>4,444 CARDS ON-CHAIN</span>
+            <span>5,500 CARDS ON-CHAIN</span>
             <span>•</span>
             <span>1,000 PHYSICAL PACKS</span>
             <span>•</span>
@@ -108,14 +108,14 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="hero">
-        <div className="eyebrow pixel">PUBLIC MINT · SEPT 16</div>
+        <div className="eyebrow pixel">PUBLIC MINT · SEPT 18</div>
 
         <h1>
           Built for those who <em>never</em> stopped collecting.
         </h1>
         
         <p className="sub">
-          4,444 illustrated graded cards pulled from 100 of the most recognizable lineups in the Pokemon world, minted on-chain for the 30th anniversary. Hold your illustrated card forever, or burn three and chase 1 of 1,000 real anniversary packs.
+          5,500 illustrated graded cards pulled from 250 of the most recognizable lineages in the Pokemon world, minted on-chain for the 30th anniversary. Hold your illustrated card forever, or burn three and chase 1 of 1,000 real anniversary packs.
         </p>
         
         <div className="cta-row">
@@ -179,17 +179,17 @@ export default function Home() {
               <div className="stamp" style={{ width: "fit-content" }}>
                 01 // 30TH SPECIAL ART RARE
               </div>
-              <h3>4,444 Illustrated Cards Pulled from 100 Lineages</h3>
+              <h3>5,500 Illustrated Cards Pulled from 250 Lineages</h3>
               <p>
                 Each card represents an immutable on-chain record celebrating the iconic evolutions and starter lineups from the first generation. Shown above: <strong>Umbreon ex SAR (#044/040)</strong> with 30th Anniversary night fireworks festival art by REND.
               </p>
               <div className="feature-stats">
                 <div className="feature-stat-pill">
-                  <div className="val">4,444</div>
+                  <div className="val">5,500</div>
                   <div className="lbl">SUPPLY</div>
                 </div>
                 <div className="feature-stat-pill">
-                  <div className="val">100</div>
+                  <div className="val">250</div>
                   <div className="lbl">LINEAGES</div>
                 </div>
                 <div className="feature-stat-pill">
@@ -239,13 +239,13 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ROW 3: Image (Left) + Copy (Right) - Featuring Authentic Japanese 30th Booster Pack */}
+          {/* ROW 3: Image (Left) + Copy (Right) - Featuring Authentic 30th Booster Pack */}
           <div className="feature-row">
             <div className="feature-media">
               <div className="feature-img-frame">
                 <Image
                   src="/pack0.jpg"
-                  alt="30th Anniversary Japanese Sealed Booster Pack"
+                  alt="30th Anniversary Sealed Booster Pack"
                   fill
                   sizes="(max-width: 768px) 220px, 260px"
                   style={{ objectFit: "contain" }}
@@ -257,9 +257,9 @@ export default function Home() {
               <div className="stamp" style={{ width: "fit-content" }}>
                 03 // PHYSICAL REWARDS
               </div>
-              <h3>1,000 Sealed Japanese Booster Packs Direct from Tokyo</h3>
+              <h3>1,000 Sealed Booster Packs Direct from Tokyo</h3>
               <p>
-                Sourced directly from authorized Japanese retail distribution stock in Tokyo. Each sealed foil pack contains 6 random Japanese cards, all guaranteed holographic, with insured international fulfillment for all raffle winners.
+                Sourced directly from authorized retail distribution stock in Tokyo. Each sealed foil pack contains 6 random cards, all guaranteed holographic, with insured international fulfillment for all raffle winners.
               </p>
               <div className="feature-stats">
                 <div className="feature-stat-pill">
@@ -301,7 +301,7 @@ export default function Home() {
               <p>Your card stays exactly as minted — on-chain, untouched, yours. A permanent record of the anniversary, not a wrapper for something else.</p>
             </div>
             <div className="stat">
-              <span className="n">4,444</span>
+              <span className="n">5,500</span>
               <span className="l">TOTAL SUPPLY</span>
             </div>
           </div>
@@ -328,11 +328,11 @@ export default function Home() {
       {/* STATS STRIP */}
       <div className="stats">
         <div className="stat-item">
-          <div className="n mono">4,444</div>
+          <div className="n mono">5,500</div>
           <div className="l">SUPPLY</div>
         </div>
         <div className="stat-item">
-          <div className="n mono">100</div>
+          <div className="n mono">250</div>
           <div className="l">LINEAGES + EVOS</div>
         </div>
         <div className="stat-item">
@@ -373,9 +373,9 @@ export default function Home() {
           <div className="tl-item active">
             <div className="dot" />
             <div>
-              <div className="when mono">SEPT 16</div>
+              <div className="when mono">SEPT 18</div>
               <h4>Public Mint opens</h4>
-              <p>4,444 cards available. Public, first come, first served.</p>
+              <p>5,500 cards available. Public, first come, first served.</p>
             </div>
           </div>
           <div className="tl-item">

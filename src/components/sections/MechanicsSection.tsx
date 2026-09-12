@@ -27,7 +27,7 @@ export default function MechanicsSection() {
 
   return (
     <section className="py-28 px-4 sm:px-6 lg:px-10 bg-[#060709] border-b border-[#222633] relative overflow-hidden" id="mechanics">
-      {/* Background Japanese Watermark */}
+      {/* Background Watermark */}
       <div className="absolute left-4 top-1/3 font-jp text-white/[0.015] select-none pointer-events-none text-[10vw] font-black" style={{ writingMode: "vertical-rl" }}>
         完全燃焼
       </div>
@@ -80,7 +80,7 @@ export default function MechanicsSection() {
 
             <div className="pt-6 border-t border-[#222633] flex items-baseline justify-between">
               <div>
-                <div className="font-mono text-3xl font-bold text-[#F5F1E8]">4,444</div>
+                <div className="font-mono text-3xl font-bold text-[#F5F1E8]">5,500</div>
                 <PixelText size="xxs" className="text-[#8C9098] tracking-widest mt-1 block">
                   TOTAL INITIAL SUPPLY
                 </PixelText>
@@ -229,7 +229,7 @@ export default function MechanicsSection() {
               </h4>
               
               <p className="text-[#8C9098] text-sm max-w-md mb-6 leading-relaxed">
-                Your 3 faces have been successfully sent to the burn address. Your ticket has a <strong>50% projected hit rate</strong> for a sealed Japanese 30th Anniversary Pack.
+                Your 3 faces have been successfully sent to the burn address. Your ticket has a <strong>50% projected hit rate</strong> for a sealed 30th Anniversary Pack.
               </p>
 
               <button

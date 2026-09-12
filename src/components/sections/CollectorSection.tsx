@@ -30,7 +30,7 @@ export default function CollectorSection() {
                       GRADED // 30TH
                     </span>
                   </div>
-                  <span className="font-mono text-[0.65rem] text-[#8C9098]">#0001 / 4444</span>
+                  <span className="font-mono text-[0.65rem] text-[#8C9098]">#0001 / 5500</span>
                 </div>
 
                 <div className="flex items-baseline justify-between">
@@ -111,7 +111,7 @@ export default function CollectorSection() {
                   icon: Award,
                   title: "FIGURES & SLABS",
                   jp: "フィギュア",
-                  desc: "High-grade PSA/BGS slabs, vintage Japanese vending sheets, and scaled statues.",
+                  desc: "High-grade PSA/BGS slabs, vintage vending sheets, and scaled statues.",
                 },
                 {
                   icon: Sparkles,
@@ -141,7 +141,7 @@ export default function CollectorSection() {
                 className="px-6 py-3 bg-[#F0B429] hover:bg-[#FFD54F] text-[#060709] font-pixel text-xs tracking-widest rounded-sm transition-all shadow-[0_0_20px_rgba(240,180,41,0.25)] flex items-center gap-2"
               >
                 <Pokeball size="xs" color="#060709" />
-                EXPLORE 4,444 COLLECTION
+                EXPLORE 5,500 COLLECTION
               </a>
 
               <div className="stamp">ARCHIVE STATUS: LEGENDARY</div>

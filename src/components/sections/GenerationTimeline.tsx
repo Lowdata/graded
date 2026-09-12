@@ -15,9 +15,9 @@ export default function GenerationTimeline() {
       jp: "ステルス公開",
     },
     {
-      when: "SEPT 16",
+      when: "SEPT 18",
       title: "Public Mint Opens",
-      desc: "4,444 faces available. Public mint, first come, first served. Instant on-chain lineage reveal.",
+      desc: "5,500 faces available. Public mint, first come, first served. Instant on-chain lineage reveal.",
       active: true,
       icon: Clock,
       jp: "ミント開始",

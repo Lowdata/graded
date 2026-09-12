@@ -20,7 +20,7 @@ const VAULT_ITEMS: VaultItem[] = [
     id: "pack0",
     src: "/pack0.jpg",
     title: "30th Celebration Foil Pack",
-    subtitle: "Sealed 6-Card Japanese Pack · All-Holo Guaranteed",
+    subtitle: "Sealed 6-Card Pack · All-Holo Guaranteed",
     tag: "★ 1/1,000 POOL",
     tagColor: "var(--gold)",
     type: "pack",
@@ -36,7 +36,7 @@ const VAULT_ITEMS: VaultItem[] = [
     type: "pack",
     grade: "BOX CASE",
   },
-  // Exact Pokémon Cards from Japanese 30th Anniversary Collection (001-040+)
+  // Exact Pokémon Cards from 30th Anniversary Collection (001-040+)
   {
     id: "mf_044",
     src: "/mf_044_6r7dmqt2.png",
@@ -249,7 +249,7 @@ export default function PackCarousel() {
           <div className="eyebrow pixel" style={{ marginBottom: "6px" }}>
             ★ ON-CHAIN ARCHIVE &amp; PACK POOL
           </div>
-          <h3>4,444 Illustrated Cards &amp; 1,000 Physical Packs</h3>
+          <h3>5,500 Illustrated Cards &amp; 1,000 Physical Packs</h3>
         </div>
 
         {/* Filter Pills */}

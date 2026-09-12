@@ -54,11 +54,11 @@ export default function PokemonMosaic() {
 
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#F5F1E8] mb-3">
             30 years.{" "}
-            <span className="golden-aura">4,444 Faces.</span>
+            <span className="golden-aura">5,500 Faces.</span>
           </h2>
 
           <p className="text-[#8C9098] text-sm leading-relaxed">
-            Every face is generated on-chain from 40 ancestral lineages. 
+            Every face is generated on-chain from 250 ancestral lineages. 
             Hover any square to reveal the burn glyph — or click to execute a test burn.
           </p>
         </div>

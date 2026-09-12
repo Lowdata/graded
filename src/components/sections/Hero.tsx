@@ -23,7 +23,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Floating Golden Japanese Atmosphere (Fixed position in background, no overlap with text) */}
+      {/* Floating Golden Atmosphere (Fixed position in background, no overlap with text) */}
       <div className="absolute left-6 top-40 font-jp golden-aura text-xs sm:text-sm tracking-widest hidden xl:block opacity-60" style={{ writingMode: "vertical-rl" }}>
         カントーから始まる旅
       </div>
@@ -42,12 +42,12 @@ export default function Hero() {
         >
           <div className="h-px w-6 sm:w-10 bg-[#F0B429]" />
           <PixelText size="xs" className="text-gold tracking-[0.25em]">
-            STEALTH MINT · SEPT 16 · 30TH ANNIVERSARY
+            STEALTH MINT · SEPT 18 · 30TH ANNIVERSARY
           </PixelText>
           <div className="h-px w-6 sm:w-10 bg-[#F0B429]" />
         </motion.div>
 
-        {/* Japanese Hero Aura Badge */}
+        {/* Hero Aura Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -97,7 +97,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.4 }}
           className="text-[#8C9098] text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-8"
         >
-          4,444 pixel-faced PFPs pulled from 40 of the most recognizable lineages in the hobby, minted on-chain for the 30th anniversary. Hold your face forever, or burn three and chase 1 of 1,000 real anniversary booster packs.
+          5,500 pixel-faced PFPs pulled from 250 of the most recognizable lineages in the hobby, minted on-chain for the 30th anniversary. Hold your face forever, or burn three and chase 1 of 1,000 real anniversary booster packs.
         </motion.p>
 
         {/* CTA Button Row */}

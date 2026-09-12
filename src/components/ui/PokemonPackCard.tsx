@@ -18,7 +18,7 @@ export default function PokemonPackCard() {
         <div className="relative w-full aspect-[1/1.75] bg-[#0a0a0c] border border-[#232329] rounded-[2px] overflow-hidden flex items-center justify-center p-1">
           <Image
             src="/pack0.jpg"
-            alt="Japanese Pokémon 30th Anniversary Celebration Booster Pack"
+            alt="Pokémon 30th Anniversary Celebration Booster Pack"
             fill
             className="object-contain p-1 transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 768px) 220px, 240px"

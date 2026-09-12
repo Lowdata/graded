@@ -1,7 +1,7 @@
 // ============================================================
 // CONFIGURABLE: Change this date to update the countdown
 // ============================================================
-export const ANNIVERSARY_DATE = new Date("2026-09-16T00:00:00Z");
+export const ANNIVERSARY_DATE = new Date("2026-09-18T00:00:00Z");
 
 // ============================================================
 // SITE CONFIG
@@ -295,7 +295,7 @@ export const FAQ_ITEMS = [
   },
   {
     q: "What does the 30th anniversary celebrate?",
-    a: "The 30th anniversary marks three decades since Pokémon's original Japanese launch in 1996 — celebrating the games, animation, trading card game, and the global community that grew with it.",
+    a: "The 30th anniversary marks three decades since Pokémon's original launch in 1996 — celebrating the games, animation, trading card game, and the global community that grew with it.",
   },
   {
     q: "Which Pokémon were part of the original 151?",
@@ -312,7 +312,7 @@ export const FAQ_ITEMS = [
 ];
 
 // ============================================================
-// JAPANESE ATMOSPHERE TEXT
+// ATMOSPHERE TEXT
 // ============================================================
 export const JP_PHRASES = [
   "ポケットモンスター",
