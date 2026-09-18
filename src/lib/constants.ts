@@ -1,7 +1,7 @@
 // ============================================================
 // CONFIGURABLE: Change this date to update the countdown
 // ============================================================
-export const ANNIVERSARY_DATE = new Date("2026-09-18T00:00:00Z");
+export const ANNIVERSARY_DATE = new Date("2026-09-22T00:00:00Z");
 
 // ============================================================
 // SITE CONFIG
