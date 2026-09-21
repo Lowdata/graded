@@ -42,7 +42,7 @@ export default function Hero() {
         >
           <div className="h-px w-6 sm:w-10 bg-[#F0B429]" />
           <PixelText size="xs" className="text-gold tracking-[0.25em]">
-            STEALTH MINT · SEPT 22 · 30TH ANNIVERSARY
+            STEALTH MINT · SEPT 24 · 30TH ANNIVERSARY
           </PixelText>
           <div className="h-px w-6 sm:w-10 bg-[#F0B429]" />
         </motion.div>
