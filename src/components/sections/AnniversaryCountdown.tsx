@@ -91,7 +91,7 @@ export default function AnniversaryCountdown() {
       {/* Target info & Retro Loadbar */}
       <div className="pt-4 border-t border-[#222633] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
         <div className="font-mono text-[0.65rem] text-[#8C9098] tracking-wider">
-          TARGET: <span className="text-[#F0B429]">SEPTEMBER 24, 2026</span> · 00:00 UTC
+          TARGET: <span className="text-[#F0B429]">SEPTEMBER 26, 2026</span> · 00:00 UTC
         </div>
 
         <div className="w-full sm:w-48 h-2 bg-[#060709] border border-[#222633] p-0.5 overflow-hidden">
