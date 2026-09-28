@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import FloatingPokeballs from "@/components/ui/FloatingPokeballs";
 import PackCarousel from "@/components/ui/PackCarousel";
+import { ANNIVERSARY_DATE } from "@/lib/constants";
 
 const FAQ_ITEMS = [
   {
@@ -30,7 +31,7 @@ export default function Home() {
 
   // Initialize Countdown
   useEffect(() => {
-    const target = new Date("2026-09-28T00:00:00Z").getTime();
+    const target = ANNIVERSARY_DATE.getTime();
     const tick = () => {
       const now = Date.now();
       let diff = Math.max(0, target - now);
@@ -108,7 +109,7 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="hero">
-        <div className="eyebrow pixel">PUBLIC MINT · SEPT 28</div>
+        <div className="eyebrow pixel">PUBLIC MINT · SEPT 30</div>
 
         <h1>
           Built for those who <em>never</em> stopped collecting.
@@ -373,7 +374,7 @@ export default function Home() {
           <div className="tl-item active">
             <div className="dot" />
             <div>
-              <div className="when mono">SEPT 28</div>
+              <div className="when mono">SEPT 30</div>
               <h4>Public Mint opens</h4>
               <p>5,500 cards available. Public, first come, first served.</p>
             </div>
